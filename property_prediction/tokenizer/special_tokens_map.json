@@ -1,0 +1,9 @@
+{
+  "eos_token": {
+    "content": "<eos>",
+    "lstrip": false,
+    "normalized": true,
+    "rstrip": false,
+    "single_word": false
+  }
+}

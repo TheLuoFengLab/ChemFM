@@ -1,0 +1,4 @@
+hubs/*
+property_prediction/data_temp/*
+*.pyc
+__pycache__/
