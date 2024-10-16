@@ -66,7 +66,7 @@ class DataArguments:
         default=None,
         metadata={"help": "The name of the supervised fine-tuning dataset to use."}
     )
-    combine_train_val: Optional[bool] = field(
+    combine_train_val_test: Optional[bool] = field(
         default=False,
         metadata={"help": "Combine the training and validation sets."}
     )
@@ -122,8 +122,12 @@ class TrainingArguments(transformers.Seq2SeqTrainingArguments):
         metadata={"help": "The path to the training arguments file."}
     )
     output_dir: str = field(
-        default="./temp",
+        default=None,
         metadata={"help": "The output directory where the model predictions and checkpoints will be written."}
+    )
+    adapter_name: Optional[str] = field(
+        default=None,
+        metadata={"help": "The adapter name."}
     )
     optim: str = field(default='adamw_torch', metadata={"help": 'The optimizer to be used'})
     per_device_train_batch_size: int = field(default=16, metadata={"help": 'The training batch size per GPU. Increase for better speed.'})
@@ -139,8 +143,6 @@ class TrainingArguments(transformers.Seq2SeqTrainingArguments):
     do_train: bool = field(default=True, metadata={"help": 'To train or not to train, that is the question?'})
     lr_scheduler_type: str = field(default='constant', metadata={"help": 'Learning rate schedule. Constant a bit better than cosine, and has advantage for analysis'})
     warmup_ratio: float = field(default=0.03, metadata={"help": 'Fraction of steps to do a warmup for'})
-    logging_steps: int = field(default=20, metadata={"help": 'The frequency of update steps after which to log the loss'})
-    save_strategy: str = field(default='steps', metadata={"help": 'When to save checkpoints'})
     early_stopping_patience: int = field(default=10, metadata={"help": 'The number of epochs to wait for improvement before stopping training'})
     early_stopping_start_epoch: int = field(default=20, metadata={"help": 'The epoch to start early stopping'})
     #wandb_run_name: str = field(default=None, metadata={"help": 'The wandb run name'})
@@ -210,8 +212,6 @@ class Scaler:
         return y
 
 def make_data_module(tokenizer: transformers.PreTrainedTokenizer, dataset, seed, args) -> Dict:
-    if args.dataset_group != "ADMET":
-        assert args.combine_train_val == False, "Combining train and val not supported for non-ADMET datasets."
     
     if args.dataset_group == "MoleculeNet":
         from chembench import load_data
@@ -243,8 +243,9 @@ def make_data_module(tokenizer: transformers.PreTrainedTokenizer, dataset, seed,
         train_dataset, val_dataset = group.get_train_valid_split(benchmark = name, split_type = 'default', seed = seed+1)
 
         # drop the "Drug_ID"
-        if args.combine_train_val:
-            train_dataset = train_val.drop(columns=["Drug_ID"])
+        if args.combine_train_val_test:
+            train_dataset = pd.concat([train_val, test_dataset], ignore_index=True)
+            train_dataset = train_dataset.drop(columns=["Drug_ID"])
         else:
             train_dataset = train_dataset.drop(columns=["Drug_ID"])
         val_dataset = val_dataset.drop(columns=["Drug_ID"])
@@ -334,10 +335,12 @@ def make_data_module(tokenizer: transformers.PreTrainedTokenizer, dataset, seed,
     # add the is_aug column, we will have the augmented and non-augmented validation sets
     train_dataset = train_dataset.map(lambda x: {"is_aug": True})
     val_dataset = val_dataset.map(lambda x: {"is_aug": False})
+    aug_val_dataset = val_dataset.map(lambda x: {"is_aug": True})
     test_dataset = test_dataset.map(lambda x: {"is_aug": False})
 
     # load the string template
     ## TODO: the start token for the molecule could be not necessary
+    ## TODO: this could be also in the tokenizer, now this is not elegant
     string_template = json.load(open(args.string_template_path, 'r'))
     molecule_start_str = string_template['MOLECULE_START_STRING']
     end_str = string_template['END_STRING']
@@ -354,10 +357,79 @@ def make_data_module(tokenizer: transformers.PreTrainedTokenizer, dataset, seed,
     return dict(
         train_dataset=train_dataset,
         val_dataset=val_dataset,
+        aug_val_dataset=aug_val_dataset,
         test_dataset=test_dataset,
         data_collator=data_collator,
         scaler=scaler,
         loss_weights=loss_weights,
+    )
+
+def make_evaluation_data_module(tokenizer: transformers.PreTrainedTokenizer, dataset, seed, args) -> Dict:
+    
+    if args.dataset_group == "MoleculeNet":
+        from chembench import load_data
+        df, induces = load_data(dataset)
+
+        train_idx, valid_idx, test_idx = induces[seed]
+        test_dataset = df.iloc[test_idx]
+
+        # drop the index
+        test_dataset = test_dataset.reset_index(drop=True)
+
+        # if the index col is present, drop it
+        if "index" in train_dataset.columns:
+            test_dataset = test_dataset.drop(columns=["index"])
+
+    elif args.dataset_group == "ADMET":
+        from tdc.benchmark_group import admet_group
+        group = admet_group(path = "./data_temp")
+        benchmark = group.get(dataset)
+        name = benchmark['name']
+        train_val, test_dataset = benchmark['train_val'], benchmark['test']
+        # seed should be add 1. This is from the default setting in Admet dataset
+        train_dataset, val_dataset = group.get_train_valid_split(benchmark = name, split_type = 'default', seed = seed+1)
+
+        # drop the "Drug_ID"
+        test_dataset = test_dataset.drop(columns=["Drug_ID"])
+
+        # rename the Drug column to smiles
+        test_dataset = test_dataset.rename(columns={"Drug": "smiles"})
+
+    elif args.dataset_group == "AttentiveFP":
+        data_path = os.path.join("./data_temp/attentive_fp", dataset)
+        test_dataset = pd.read_csv(os.path.join(data_path, str(seed), "test.csv"))
+
+    elif args.dataset_group == "MoleBert":
+        data_path = os.path.join("./data_temp/molebert", dataset)
+        test_dataset = pd.read_csv(os.path.join(data_path, "test.csv"))
+
+    else:
+        raise ValueError(f"Dataset group {args.dataset_group} not supported.")
+
+    # Load dataset.
+    test_dataset = Dataset.from_pandas(test_dataset)
+
+    test_dataset = test_dataset.map(lambda x: {"is_aug": False})
+
+    # load the string template
+    ## TODO: the start token for the molecule could be not necessary
+    ## TODO: this could be also in the tokenizer, now this is not elegant
+    string_template = json.load(open(args.string_template_path, 'r'))
+    molecule_start_str = string_template['MOLECULE_START_STRING']
+    end_str = string_template['END_STRING']
+
+    data_collator = DataCollator(
+        tokenizer=tokenizer,
+        source_max_len=args.source_max_len,
+        molecule_source_aug_prob=0.0,
+        molecule_start_str=molecule_start_str,
+        end_str=end_str,
+        sme=SMILESAugmenter()
+    )
+
+    return dict(
+        test_dataset=test_dataset,
+        data_collator=data_collator,
     )
 
 @dataclass

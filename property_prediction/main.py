@@ -12,6 +12,7 @@ from transformers import (
     AutoTokenizer,
     AutoConfig,
     LlamaForSequenceClassification,
+    set_seed,
 )
 from peft import (
     LoraConfig,
@@ -30,11 +31,19 @@ from scipy.stats import spearmanr
 
 from tqdm import tqdm
 import numpy as np
+import pandas as pd
+import random
+import pickle
+
+if torch.cuda.is_available():   
+    torch.backends.cuda.matmul.allow_tf32 = True
+    torch.backends.cudnn.allow_tf32 = True
+
 
 IGNORE_INDEX = -100
 DEFAULT_PAD_TOKEN = "[PAD]"
 
-def load_model_and_tokenizer(model_args, args):
+def load_model_and_tokenizer(model_args, args, adapter_name):
 
     device_map = "auto"
 
@@ -101,7 +110,7 @@ def load_model_and_tokenizer(model_args, args):
             lora_alpha=lora_alpha, lora_dropout=args.lora_dropout,
             use_rslora=False
         )
-        model = get_peft_model(model, lora_config, adapter_name=f"{args.dataset}")
+        model = get_peft_model(model, lora_config, adapter_name=adapter_name)
     
     try: 
         model.print_trainable_parameters()
@@ -251,8 +260,42 @@ def evaluate(model, data_loader, loss_fcns, accelerator, args, split, metric_eva
 
 def train_with_one_seed(model_args, data_args, training_args, args, data_seed):
 
+    # TODO: check what happens if we set the full parameters
+    if args.adapter_name is None:
+        adapter_name = f"{args.dataset}_run_seed_{args.seed}_data_seed_{data_seed}"
+    else:
+        adapter_name = args.adapter_name
+
+    # set the output directory if it is provided
+    output_dirs = []
+
+    if training_args.output_dir is not None:
+
+        if not args.combine_train_val_test: 
+            # we need to set three output folders to checkpoint 
+            # 1. the best model based on the validation loss
+            # 2. the best model based on the validation metric
+            # 3. the last model
+
+            for subfolder in ["best_val_loss_epoch", "best_val_metric_epoch", "last_epoch"]:
+                output_dir = os.path.join(training_args.output_dir, subfolder)
+                output_dirs.append(output_dir)
+        else:
+            # if we are combining the train, val, and test sets, we only need to save the last model
+            output_dirs.append(os.path.join(training_args.output_dir, "last_epoch"))
+            
+
+    
+    # set seed for transformers, torch, numpy, and random
+    print(f"Setting seed {args.seed} for transformers, torch, numpy, and random.")
+    set_seed(args.seed)
+    torch.manual_seed(args.seed)
+    np.random.seed(args.seed)
+    random.seed(args.seed)
+    
+
     # load model and tokenizer
-    model, tokenizer = load_model_and_tokenizer(model_args, args)
+    model, tokenizer = load_model_and_tokenizer(model_args, args, adapter_name)
 
     # set up the accelerator
     accelerator = Accelerator(
@@ -264,8 +307,20 @@ def train_with_one_seed(model_args, data_args, training_args, args, data_seed):
                                    seed=data_seed, args=args)
     data_collator = data_module['data_collator']
 
+    # we need to save the scaler for the offline evaluation if 
+    ## 1. the scaler is not None
+    ## 2. the output_dirs is not empty (i.e., we are saving the model)
+    if data_module['scaler'] is not None and output_dirs != []:
+        for output_dir in output_dirs:
+            # create the adapter folder firstly in case scaler needs to be saved
+            adapter_folder = os.path.join(output_dir, adapter_name)
+            os.makedirs(adapter_folder, exist_ok=True)
+            scaler_path = os.path.join(adapter_folder, "scaler.pkl")
+            pickle.dump(data_module['scaler'], open(scaler_path, 'wb'))
+
     train_loader = DataLoader(data_module['train_dataset'], batch_size=training_args.per_device_train_batch_size, shuffle=True, collate_fn=data_collator)
     val_loader = DataLoader(data_module['val_dataset'], batch_size=training_args.per_device_eval_batch_size, shuffle=False, collate_fn=data_collator)
+    aug_val_loader = DataLoader(data_module['aug_val_dataset'], batch_size=training_args.per_device_eval_batch_size, shuffle=False, collate_fn=data_collator)
     test_loader = DataLoader(data_module['test_dataset'], batch_size=training_args.per_device_eval_batch_size, shuffle=False, collate_fn=data_collator)
     print("Data loaders set up")
 
@@ -321,10 +376,10 @@ def train_with_one_seed(model_args, data_args, training_args, args, data_seed):
     )
     print("scheduler and optimizer set up")
 
-    model, loss_fcns, optimizer, train_loader, val_loader, test_loader, scheduler = accelerator.prepare(
-        model, loss_fcns, optimizer, train_loader, val_loader, test_loader, scheduler)
+    model, loss_fcns, optimizer, train_loader, val_loader, aug_val_loader, test_loader, scheduler = accelerator.prepare(
+        model, loss_fcns, optimizer, train_loader, val_loader, aug_val_loader, test_loader, scheduler)
     
-    # set the metric
+    # set the metric, the second element in the tuple is the best value for the metric initialized with the worst value
     metric_map = {"regression": {"mae": (mean_absolute_error, float("inf")), "spearman": (spearmanr, -float("inf")), "rmse": (root_mean_squared_error, float("inf"))},
                   "classification": {"auroc": (roc_auc_score, -float("inf")), "auprc": (average_precision_score, -float("inf"))}}
     
@@ -340,6 +395,8 @@ def train_with_one_seed(model_args, data_args, training_args, args, data_seed):
     best_val_loss_epoch = 0
     best_val_metric_epoch = 0
 
+    best_test_metric = metric_map[args.task_type][args.metric][1]
+
     # start training now
     step_count = 0
     for epoch in range(1, num_train_epochs+1):
@@ -352,6 +409,10 @@ def train_with_one_seed(model_args, data_args, training_args, args, data_seed):
         val_loss = val_result["loss"]
         val_metric = val_result["metric"]
 
+        # evaluate on augmented validation set
+        aug_val_result = evaluate(model, aug_val_loader, loss_fcns, accelerator, args, 'aug_val', None, data_module['scaler'])
+        aug_val_loss = aug_val_result["loss"]
+
         # evaluate on test set
         test_result = evaluate(model, test_loader, loss_fcns, accelerator, args, 'test', metric_evaluator, data_module['scaler'])
         test_loss = test_result["loss"]
@@ -363,6 +424,10 @@ def train_with_one_seed(model_args, data_args, training_args, args, data_seed):
             best_val_loss_epoch = epoch
             test_metric_on_best_val_loss = test_metric
 
+            # save the adapter if the output directory is provided and if we are not combining the train, val, and test sets
+            if output_dirs != [] and not args.combine_train_val_test:
+                model.save_pretrained(output_dirs[0])
+
         # check if the validation metric is the best
         if metric_map[args.task_type][args.metric][1] == float("inf") and val_metric <= best_val_metric or \
             metric_map[args.task_type][args.metric][1] == -float("inf") and val_metric >= best_val_metric:
@@ -370,21 +435,45 @@ def train_with_one_seed(model_args, data_args, training_args, args, data_seed):
                 test_metric_on_best_val_metric = test_metric
                 best_val_metric_epoch = epoch
 
+                # save the adapter if the output directory is provided and if we are not combining the train, val, and test sets
+                if output_dirs != [] and not args.combine_train_val_test:
+                    model.save_pretrained(output_dirs[1])
+
         # check if the test metric is the best
         if metric_map[args.task_type][args.metric][1] == float("inf") and test_metric <= best_test_metric or \
             metric_map[args.task_type][args.metric][1] == -float("inf") and test_metric >= best_test_metric:
                 best_test_metric = test_metric
                 best_test_metric_epoch = epoch
         
+        # save the model if the output directory is provided for the last epoch
+        if output_dirs != [] and epoch == num_train_epochs:
+            model.save_pretrained(output_dirs[-1])
+        
         # log the results
         print(f"Epoch {epoch} Val Loss: {val_loss:.4f}, Val Metric: {val_metric:.4f},  " +
               f"Test Loss: {test_loss:.4f}, Test Metric: {test_metric:.4f}, " +
               f"Test Metric on Best Val Metric: {test_metric_on_best_val_metric:.4f}, Best Test Metric: {best_test_metric:.4f}")
-    
+
+    return_results = {
+        "best_val_loss": best_val_loss,
+        "best_val_metric": best_val_metric,
+        "best_test_metric": best_test_metric,
+        "best_val_loss_epoch": best_val_loss_epoch,
+        "best_val_metric_epoch": best_val_metric_epoch,
+        "best_test_metric_epoch": best_test_metric_epoch,
+        "test_metric_on_best_val_loss": test_metric_on_best_val_loss,
+        "test_metric_on_best_val_metric": test_metric_on_best_val_metric,
+        "test_metric": test_metric,
+        "val_metric": val_metric,
+    }
+
+    # FC: I am not sure if this is necessary, but I am adding it to be safe
+    del model, loss_fcns, optimizer, train_loader, val_loader, test_loader, scheduler
+    accelerator.end_training()
+    accelerator.free_memory()
+
+    return return_results
         
-
-
-
 
 def main():
     hfparser = transformers.HfArgumentParser((
@@ -402,6 +491,16 @@ def main():
 
     assert not (args.num_data_seeds>1 and args.num_run_seeds>1), "num_data_seeds and num_run_seeds cannot be set >1 at the same time."
 
+    # we need to give warning if 
+    ## 1. multiple seeds are provided for multiple runs
+    ## 2. the output directory is provided (i.e., we are saving the model)
+    ## 3. the adapter name is provided
+    # this will make all the results saved in the same directory
+    if args.num_run_seeds>1 or args.num_data_seeds>1:
+        if training_args.output_dir is not None and args.adapter_name is not None:
+            print("Warning: Saving the model with multiple seeds will overwrite the previous results.")
+
+    results = []
     if args.do_train:
         if args.task_type == "regression":
             assert args.weight_loss == False, "Weight loss not supported for regression tasks."
@@ -409,21 +508,40 @@ def main():
             for data_seed in range(args.num_data_seeds):
                 # the run seed is set to the argument seed: args.seed
                 results_one_seed = train_with_one_seed(model_args, data_args, training_args, args, data_seed)
-                assert 1==2
-                #results.append(results_one_seed)
+                results.append(results_one_seed)
         else:
             print("run seed is ignored since num_data_seeds is set greater than 1")
             data_seed = 0
             for run_seed in range(args.num_run_seeds):
                 args.seed = run_seed
-                results_one_seed, wandb_step = train_with_one_seed(model_args, data_args, training_args, args, data_seed)
-                #results.append(results_one_seed)
+                results_one_seed = train_with_one_seed(model_args, data_args, training_args, args, data_seed)
+                results.append(results_one_seed)
     else:
         if args.do_eval:
             pass
-
-
     
+    # log the results 
+    results = pd.DataFrame(results)
+    print(results)
+
+    # if only one seed is used, we don't need to compute the mean and std
+    if args.num_data_seeds == 1 and args.num_run_seeds == 1:
+        if training_args.output_dir is not None:
+            results.to_csv(f"{training_args.output_dir}/results.csv")
+        return
+    
+    ## compute the mean and std of the results
+    results_mean = results.mean()
+    ## we need to set ddof=0 to get the population std,
+    ## this is the same as admet code using np.std
+    results_std = results.std(ddof=0)
+
+    # add the mean and std to the dataframe
+    results.loc["mean"] = results_mean
+    results.loc["std"] = results_std
+    print(results)
+    if training_args.output_dir is not None:
+        results.to_csv(f"{training_args.output_dir}/results.csv")
 
 if __name__ == "__main__":
     main()

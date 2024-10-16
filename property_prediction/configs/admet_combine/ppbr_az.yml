@@ -26,7 +26,9 @@
   per_device_train_batch_size: 8,
   gradient_accumulation_steps: 1,
   molecule_source_aug_prob: 1.0,
-  num_data_seeds: 5,
+  num_data_seeds: 1,
   seed: 533,
-  output_dir: "./outputs/admet/ppbr_az"
+  output_dir: "./outputs/admet_combine/ppbr_az",
+  adapter_name: "admet_ppbr_az",
+  combine_train_val_test: True
 }
