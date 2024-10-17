@@ -7,7 +7,7 @@
   log_scaler: True,
   weight_loss: False,
   metric: "spearman",
-  pretrain_model: "feiyang-cai/ChemFM-3B",
+  pretrain_model: "ChemFM/ChemFM-3B",
   tokenizer_path: "tokenizer",
   optim: "adamw_torch",
   weight_decay: 0.05,
