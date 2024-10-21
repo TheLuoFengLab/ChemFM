@@ -210,7 +210,7 @@ Thank you for your support!
 
 The pre-training of ChemFM is based on [TinyLlama](https://github.com/jzhang38/TinyLlama), and the fine-tuning process is supported by [Hugging Face](https://huggingface.co/).
 
-We would also like to thank Clemson University's [Palmetto Cluster team](https://www.palmetto.clemson.edu/palmetto/) for their invaluable support with cloud computing resources and maintenance.
+We would also like to thank Clemson University's [Palmetto Cluster team](https://docs.rcd.clemson.edu/palmetto/) for their invaluable support with cloud computing resources and maintenance.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

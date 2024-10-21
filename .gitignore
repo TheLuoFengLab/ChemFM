@@ -1,5 +1,5 @@
 hubs/*
-property_prediction/data_temp/*
+finetuning/property_prediction/data_temp/*
 *.pyc
 __pycache__/
 **/outputs/
