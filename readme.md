@@ -85,17 +85,21 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-ChemFM is a large-scale foundation model, available in both 1B and 3B parameters, specifically designed for chemistry. 
+ChemFM is a large-scale foundation model, specifically designed for chemistry. 
 It has been [pre-trained](https://github.com/TheLuoFengLab/ChemFM/tree/master/pretraining) on 178 million molecules from [UniChem](https://www.ebi.ac.uk/unichem/) using self-supervised causal language modeling, enabling the extraction of versatile and generalizable molecular representations.
+
+The model comes in two variations with approximately 1 billion and 3 billion trainable parameters:
+- ChemFM-1B  &nbsp; [<a href="https://huggingface.co/ChemFM/ChemFM-1B"><img src="https://huggingface.co/front/assets/huggingface_logo.svg" alt="Hugging Face" width="20" height="20" style="vertical-align: middle; margin-right: 0px;"> Model Page</a>]
+- ChemFM-3B &nbsp; [<a href="https://huggingface.co/ChemFM/ChemFM-3B"><img src="https://huggingface.co/front/assets/huggingface_logo.svg" alt="Hugging Face" width="20" height="20" style="vertical-align: middle; margin-right: 0px;"> Model Page</a>]
 
 <p align="center">
   <img src="images/pretrain.jpg" alt="Pretraining Overview" width="800">
 </p>
 
 The model can be fine-tuned for a wide range of downstream chemical tasks, such as:
-* [Molecular property prediction](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/property_prediction)
-* [Conditional molecular generation](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/conditional_generation)
-* [Reaction synthesis and retro-synthesis predictions](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/reaction_prediction)
+* [Molecular property prediction](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/property_prediction) &nbsp; [<a href="https://huggingface.co/spaces/ChemFM/molecular_property_prediction"><img src="https://huggingface.co/front/assets/huggingface_logo.svg" alt="Hugging Face" width="20" height="20" style="vertical-align: middle; margin-right: 0px;"> Demo</a>]
+* [Conditional molecular generation](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/conditional_generation) &nbsp; [<a href="https://huggingface.co/ChemFM/ChemFM-1B"><img src="https://huggingface.co/front/assets/huggingface_logo.svg" alt="Hugging Face" width="20" height="20" style="vertical-align: middle; margin-right: 0px;"> Demo</a>]
+* [Reaction synthesis and retro-synthesis predictions](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/reaction_prediction) &nbsp; [<a href="https://huggingface.co/ChemFM/ChemFM-1B"><img src="https://huggingface.co/front/assets/huggingface_logo.svg" alt="Hugging Face" width="20" height="20" style="vertical-align: middle; margin-right: 0px;"> Demo</a>]
 * And more ...
 
 <p align="center">
@@ -142,7 +146,7 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 ### Pre-training the Model
 For detailed instructions on how to pre-train ChemFM, please refer to the [pretraining](https://github.com/TheLuoFengLab/ChemFM/tree/master/pretraining) subfolder.
 
-### Fine-tuning the model
+### Fine-tuning the Model
 For detailed instructions on how to fine-tune ChemFM for specific tasks, please refer to the relevant subfolders:
 * Molecular property prediction: [finetuning/property_prediction](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/property_prediction)
 * Conditional molecular generation: [finetuning/conditional_generation](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/conditional_generation)
