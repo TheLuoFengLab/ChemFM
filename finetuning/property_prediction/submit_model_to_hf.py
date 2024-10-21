@@ -30,7 +30,7 @@ The task a {task_type} task, and the objective is to {task_description}.
 The whole dataset contains {num_samples} samples. For more details about the dataset, visit [ADMET benchmark](https://tdcommons.ai/benchmark/admet_group/{dataset}).
 
 **How to Use**:  
-For more details on how to use this model, visit [ChemFM GitHub](https://github.com/TheLuoFengLab/ChemFM/tree/master/property_prediction).
+For more details on how to use this model, visit [ChemFM GitHub](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/property_prediction).
 """
 
 if args.dataset_group == "ADMET":
@@ -86,8 +86,8 @@ base_model.config.pad_token_id = tokenizer.pad_token_id
 lora_model = PeftModel.from_pretrained(base_model, args.model_path)
 
 # upload model and tokenizer to Hugging Face Model Hub
-lora_model.push_to_hub(args.model_id)
-tokenizer.push_to_hub(args.model_id)
+lora_model.push_to_hub(args.model_id, private=True)
+tokenizer.push_to_hub(args.model_id, private=True)
 card.push_to_hub(args.model_id)
 
 
