@@ -1,5 +1,4 @@
 <!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
-<a id="readme-top"></a>
 <!--
 *** Thanks for checking out the Best-README-Template. If you have a suggestion
 *** that would make this better, please fork the repo and create a pull request
@@ -7,8 +6,6 @@
 *** Don't forget to give the project a star!
 *** Thanks again! Now go create something AMAZING! :D
 -->
-
-
 
 <!-- PROJECT SHIELDS -->
 <!--
@@ -18,33 +15,54 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Stargazers][stars-shield]][stars-url]
-[![Forks][forks-shield]][forks-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
 
+[stars-shield]: https://img.shields.io/github/stars/TheLuoFengLab/ChemFM.svg?style=flat-square&color=b75347
+[stars-url]: https://github.com/TheLuoFengLab/ChemFM/stargazers
+[forks-shield]: https://img.shields.io/github/forks/TheLuoFengLab/ChemFM.svg?style=flat-square&color=df7e66
+[forks-url]: https://github.com/TheLuoFengLab/ChemFM/network/members
+[issues-shield]: https://img.shields.io/github/issues/TheLuoFengLab/ChemFM.svg?style=flat-square&color=edc775
+[issues-url]: https://github.com/TheLuoFengLab/ChemFM/issues
+[license-shield]: https://img.shields.io/github/license/TheLuoFengLab/ChemFM.svg?style=flat-square&color=94b594
+[license-url]: https://github.com/othneildrew/TheLuoFengLab/ChemFM/blob/master/LICENSE.txt
 
 
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
+  <h1 align="center">ChemFM: A Foundation Model for Chemistry</h1>
 
-  <h3 align="center">ChemFM: A Foundation Model for Chemistry</h3>
+  [![Stargazers][stars-shield]][stars-url]
+  [![Forks][forks-shield]][forks-url]
+  [![Issues][issues-shield]][issues-url]
+  [![MIT License][license-shield]][license-url]
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://huggingface.co/ChemFM">
+      <img src="https://info.arxiv.org/brand/images/brand-supergraphic.jpg" alt="arxiv" width="25" height="25" style="vertical-align: middle; margin-right: 0px;">
+    </a>    
+    <a href="https://huggingface.co/ChemFM">
+      ArXiv
+    </a>
+    |
+    <a href="https://huggingface.co/ChemFM">
+      <img src="https://huggingface.co/front/assets/huggingface_logo.svg" alt="Hugging Face" width="20" height="20" style="vertical-align: middle; margin-right: 0px;">
+    </a>    
+    <a href="https://huggingface.co/ChemFM">
+      Hugging Face
+    </a>
+    |
+    <a href="https://discord.gg/xjyVaZ9V">
+      <img src="https://camo.githubusercontent.com/ae76bfbcd3ea4af324682842213b28d9a7ebdd8791d8531d1b7e3b8b4d2a0302/68747470733a2f2f6564656e742e6769746875622e696f2f537570657254696e7949636f6e732f696d616765732f7376672f646973636f72642e737667" alt="Discord" width="25" height="25" style="vertical-align: middle; margin-right: 0px;">
+    </a>    
+    <a href="https://discord.gg/xjyVaZ9V">
+      Discord
+    </a>
+  </p>
+
+  <p align="center">
+    <a href="https://github.com/TheLuoFengLab/ChemFM/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://github.com/TheLuoFengLab/ChemFM/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
 </div>
 
@@ -56,16 +74,9 @@
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
@@ -81,77 +92,41 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+ChemFM is a large-scale foundation model (with 1B and 3B parameters) specifically developed for chemistry, pre-trained on 178 million molecules from [UniChem](https://www.ebi.ac.uk/unichem/) using self-supervised causal language modeling to extract generalizable molecular representations. 
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+<p align="center">
+  <img src="images/pretrain.jpg" alt="Pretraining Overview" width="800">
+</p>
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
+This model can be adapted to diverse downstream chemical applications including
+* Molecular property prediction
+* Conditional molecular generation 
+* Reaction synthesis and retro-synthesis predictions. 
+* and so on ...
 
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+<p align="center">
+  <img src="images/finetune.jpg" alt="Pretraining Overview" width="800">
+</p>
 
 
-### Built With
-
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- GETTING STARTED -->
 ## Getting Started
+The ChemFM is tested on Python 3.10 and PyTorch 2.4.1. The environment can be installed easily via a conda environment according to the following steps:
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
+* Clone the Repository
+  ```bash
+  git clone https://github.com/TheLuoFengLab/ChemFM.git
+  cd ChemFM
   ```
-
-### Installation
-
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-5. Change git remote url to avoid accidental pushes to base project
-   ```sh
-   git remote set-url origin github_username/repo_name
-   git remote -v # confirm the changes
-   ```
-
+* Create and Activate Conda Environment
+  ```bash
+  conda env create -f environment.yml 
+  conda activate ChemFM
+  ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -170,11 +145,10 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Add Property Prediction
-- [ ] Add Reaction Prediction
-- [ ] Add 
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
+- [ ] [Pre-training]()
+- [ ] [Molecular property prediction]()
+- [ ] [Conditional molecular generation]()
+- [ ] [Reaction prediction]()
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -194,14 +168,7 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- CONTACT -->
@@ -213,6 +180,18 @@ Project superviser: Feng Luo - luofeng@clemson.edu
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Citation
+If you find our work valuable, please cite:
+```
+@article{ChemFM,
+       author = {Cai, Feiyang and Luo, Feng},
+        title = {ChemFM: A foundation model for Chemisty},
+      journal = {arXiv preprint arXiv:2203.08441},
+         year = 2024,
+}
+```
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 
 
 <!-- ACKNOWLEDGMENTS -->
@@ -220,29 +199,14 @@ Project superviser: Feng Luo - luofeng@clemson.edu
 
 Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
 
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
+* [TinyLLama](https://github.com/jzhang38/TinyLlama)
+* [Hugging Face](https://huggingface.co/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- LICENSE -->
+## License
 
+Distributed under the MIT License. See `LICENSE.txt` for more information.
 
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
-[forks-url]: https://github.com/TheLuoFengLab/ChemFM/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/TheLuoFengLab/ChemFM/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/TheLuoFengLab/ChemFM/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
-[product-screenshot]: images/screenshot.png
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
