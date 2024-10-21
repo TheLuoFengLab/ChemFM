@@ -1,0 +1,112 @@
+{
+    "Caco2_Wang": {
+        "task_type": "regression",
+        "description": "predict drug permeability, measured in cm/s, using the Caco-2 cell line as an in vitro model to simulate human intestinal tissue permeability",
+        "num_molecules": 906
+    },
+    "Bioavailability_Ma": {
+        "task_type": "classification",
+        "description": "predict oral bioavailability with binary labels, indicating the rate and extent a drug becomes available at its site of action",
+        "num_molecules": 640
+    },
+    "Lipophilicity_AstraZeneca": {
+        "task_type": "regression",
+        "description": "predict lipophilicity with continuous labels, measured as a log-ratio, indicating a drug's ability to dissolve in lipid environments",
+        "num_molecules": 4200
+    },
+    "Solubility_AqSolDB": {
+        "task_type": "regression",
+        "description": "predict aqueous solubility with continuous labels, measured in log mol/L, indicating a drug's ability to dissolve in water",
+        "num_molecules": 9982
+    },
+    "HIA_Hou": {
+        "task_type": "classification",
+        "description": "predict human intestinal absorption (HIA) with binary labels, indicating a drug's ability to be absorbed into the bloodstream",
+        "num_molecules": 578
+    },
+    "Pgp_Broccatelli": {
+        "task_type": "classification",
+        "description": "predict P-glycoprotein (Pgp) inhibition with binary labels, indicating a drug's potential to alter bioavailability and overcome multidrug resistance",
+        "num_molecules": 1212
+    },
+    "BBB_Martins": {
+        "task_type": "classification",
+        "description": "predict blood-brain barrier permeability with binary labels, indicating a drug's ability to penetrate the barrier to reach the brain",
+        "num_molecules": 1915
+    },
+    "PPBR_AZ": {
+        "task_type": "regression",
+        "description": "predict plasma protein binding rate with continuous labels, indicating the percentage of a drug bound to plasma proteins in the blood",
+        "num_molecules": 1797
+    },
+    "VDss_Lombardo": {
+        "task_type": "regression",
+        "description": "predict the volume of distribution at steady state (VDss), indicating drug concentration in tissues versus blood",
+        "num_molecules": 1130
+    },
+    "CYP2C9_Veith": {
+        "task_type": "classification",
+        "description": "predict CYP2C9 inhibition with binary labels, indicating the drug's ability to inhibit the CYP2C9 enzyme involved in metabolism",
+        "num_molecules": 12092
+    },
+    "CYP2D6_Veith": {
+        "task_type": "classification",
+        "description": "predict CYP2D6 inhibition with binary labels, indicating the drug's potential to inhibit the CYP2D6 enzyme involved in metabolism",
+        "num_molecules": 13130
+    },
+    "CYP3A4_Veith": {
+        "task_type": "classification",
+        "description": "predict CPY3A4 inhibition with binary labels, indicating the drug's ability to inhibit the CPY3A4 enzyme involved in metabolism",
+        "num_molecules": 12328
+    },
+    "CYP2C9_Substrate_CarbonMangels": {
+        "task_type": "classification",
+        "description": "predict whether a drug is a substrate of the CYP2C9 enzyme with binary labels, indicating its potential to be metabolized",
+        "num_molecules": 666
+    },
+    "CYP2D6_Substrate_CarbonMangels": {
+        "task_type": "classification",
+        "description": "predict whether a drug is a substrate of the CYP2D6 enzyme with binary labels, indicating its potential to be metabolized",
+        "num_molecules": 664
+    },
+    "CYP3A4_Substrate_CarbonMangels": {
+        "task_type": "classification",
+        "description": "predict whether a drug is a substrate of the CYP3A4 enzyme with binary labels, indicating its potential to be metabolized",
+        "num_molecules": 667
+    },
+    "Half_Life_Obach": {
+        "task_type": "regression",
+        "description": "predict the half-life duration of a drug, measured in hours, indicating the time for its concentration to reduce by half",
+        "num_molecules": 667
+    },
+    "Clearance_Hepatocyte_AZ": {
+        "task_type": "regression",
+        "description": "predict drug clearance, measured in \u03bcL/min/10^6 cells, from hepatocyte experiments, indicating the rate at which the drug is removed from body",
+        "num_molecules": 1020
+    },
+    "Clearance_Microsome_AZ": {
+        "task_type": "regression",
+        "description": "predict drug clearance, measured in mL/min/g, from microsome experiments, indicating the rate at which the drug is removed from body",
+        "num_molecules": 1102
+    },
+    "LD50_Zhu": {
+        "task_type": "regression",
+        "description": "predict the acute toxicity of a drug, measured as the dose leading to lethal effects in log(kg/mol)",
+        "num_molecules": 7385
+    },
+    "hERG": {
+        "task_type": "classification",
+        "description": "predict whether a drug blocks the hERG channel, which is crucial for heart rhythm, potentially leading to adverse effects",
+        "num_molecules": 648
+    },
+    "AMES": {
+        "task_type": "classification",
+        "description": "predict whether a drug is mutagenic with binary labels, indicating its ability to induce genetic alterations",
+        "num_molecules": 7255
+    },
+    "DILI": {
+        "task_type": "classification",
+        "description": "predict whether a drug can cause liver injury with binary labels, indicating its potential for hepatotoxicity",
+        "num_molecules": 475
+    }
+}

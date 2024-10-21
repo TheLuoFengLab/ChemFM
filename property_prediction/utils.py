@@ -462,7 +462,10 @@ class DataCollator(object):
                 try:
                     smiles = Chem.MolToSmiles(Chem.MolFromSmiles(smiles))
                 except:
-                    raise ValueError(f"Invalid SMILES: {smiles}")
+                    # we found in some datasets the smiles are not valid
+                    # so we directly use the smiles 
+                    #raise ValueError(f"Invalid SMILES: {smiles}")
+                    smiles = smiles
 
             # get the properties except the smiles and mol_id cols
             props = [example[col] if example[col] is not None else np.nan for col in example.keys() if col not in ['smiles', 'is_aug']]

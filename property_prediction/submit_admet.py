@@ -114,6 +114,7 @@ for seed in [1, 2, 3, 4, 5]:
 
     # if the scaler is saved, load it
     scaler_path = os.path.join(adapter_path, "scaler.pkl")
+    scaler = None
     if os.path.exists(scaler_path):
         scaler = pickle.load(open(scaler_path, "rb"))
         print("scaler loaded")
@@ -148,7 +149,9 @@ for seed in [1, 2, 3, 4, 5]:
         if task == 'regression':
             y_pred_test.append(outputs.logits.cpu().detach().numpy())
         else:
-            y_pred_test.append((torch.sigmoid(outputs.logits) > 0.5).cpu().detach().numpy())
+            # for classification, we need to apply sigmoid to get the probability
+            # it is not necessary to apply sigmoid for the evaluation
+            y_pred_test.append((torch.sigmoid(outputs.logits)).cpu().detach().numpy())
     
     y_pred_test = np.concatenate(y_pred_test, axis=0)
     if scaler and task == 'regression':

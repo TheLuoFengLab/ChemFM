@@ -3,3 +3,5 @@ property_prediction/data_temp/*
 *.pyc
 __pycache__/
 **/outputs/
+**/final_results/
+**/running_jobs/
