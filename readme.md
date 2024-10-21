@@ -1,11 +1,4 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
+<a id="readme-top"></a>
 
 <!-- PROJECT SHIELDS -->
 <!--
@@ -81,9 +74,10 @@
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="#citation">Citation</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#license">License</a></li>
   </ol>
 </details>
 
@@ -91,18 +85,18 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-ChemFM is a large-scale foundation model (with 1B and 3B parameters) specifically developed for chemistry, pre-trained on 178 million molecules from [UniChem](https://www.ebi.ac.uk/unichem/) using self-supervised causal language modeling to extract generalizable molecular representations. 
+ChemFM is a large-scale foundation model, available in both 1B and 3B parameters, specifically designed for chemistry. 
+It has been [pre-trained](https://github.com/TheLuoFengLab/ChemFM/tree/master/pretraining) on 178 million molecules from [UniChem](https://www.ebi.ac.uk/unichem/) using self-supervised causal language modeling, enabling the extraction of versatile and generalizable molecular representations.
 
 <p align="center">
   <img src="images/pretrain.jpg" alt="Pretraining Overview" width="800">
 </p>
 
-This model can be adapted to diverse downstream chemical applications including
-* Molecular property prediction
-* Conditional molecular generation 
-* Reaction synthesis and retro-synthesis predictions. 
-* and so on ...
+The model can be fine-tuned for a wide range of downstream chemical tasks, such as:
+* [Molecular property prediction](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/property_prediction)
+* [Conditional molecular generation](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/conditional_generation)
+* [Reaction synthesis and retro-synthesis predictions](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/reaction_prediction)
+* And more ...
 
 <p align="center">
   <img src="images/finetune.jpg" alt="Pretraining Overview" width="800">
@@ -115,14 +109,14 @@ This model can be adapted to diverse downstream chemical applications including
 
 <!-- GETTING STARTED -->
 ## Getting Started
-The ChemFM is tested on Python 3.10 and PyTorch 2.4.1. The environment can be installed easily via a conda environment according to the following steps:
+ChemFM has been tested with Python 3.10 and PyTorch 2.4.1. You can easily set up the required environment using Conda by following these steps:
 
-* Clone the Repository
+* Clone the repository
   ```bash
   git clone https://github.com/TheLuoFengLab/ChemFM.git
   cd ChemFM
   ```
-* Create and Activate Conda Environment
+* Create and activate Conda environment
   ```bash
   conda env create -f environment.yml 
   conda activate ChemFM
@@ -134,9 +128,25 @@ The ChemFM is tested on Python 3.10 and PyTorch 2.4.1. The environment can be in
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+### Quick Start
+To get started with ChemFM, you can load the ChemFM models directly from Hugging Face using the following Python script:
+```python
+from transformers import AutoModel, AutoTokenizer
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+# Load the ChemFM-3B model and tokenizer
+model_name = "ChemFM/ChemFM-3B"
+model = AutoModel.from_pretrained(model_name)
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+```
+
+### Pre-training the Model
+For detailed instructions on how to pre-train ChemFM, please refer to the [pretraining](https://github.com/TheLuoFengLab/ChemFM/tree/master/pretraining) subfolder.
+
+### Fine-tuning the model
+For detailed instructions on how to fine-tune ChemFM for specific tasks, please refer to the relevant subfolders:
+* Molecular property prediction: [finetuning/property_prediction](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/property_prediction)
+* Conditional molecular generation: [finetuning/conditional_generation](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/conditional_generation)
+* Reaction synthesis and retro-synthesis predictions: [finetuning/reaction_prediction](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/reaction_prediction)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -145,10 +155,14 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] [Pre-training]()
-- [ ] [Molecular property prediction]()
-- [ ] [Conditional molecular generation]()
-- [ ] [Reaction prediction]()
+This GitHub project is still under active development. Below is the current roadmap:
+
+- [ ] [Pre-training](https://github.com/TheLuoFengLab/ChemFM/tree/master/pretraining)
+- [x] [Molecular Property Prediction](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/property_prediction)
+- [ ] [Conditional Molecular Generation](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/conditional_generation)
+- [ ] [Reaction Prediction](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/reaction_prediction)
+
+If you'd like to request additional features, please [submit a feature request](https://github.com/TheLuoFengLab/ChemFM/issues/new?labels=enhancement&template=feature-request---.md) in the GitHub Issues section, or feel free to [contact us](#contact-us).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -156,17 +170,12 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 <!-- CONTRIBUTING -->
 ## Contributing
+Any contributions you make are **greatly appreciated** and can include, but not limited to:
+- **New dataset evaluations** for existing tasks.
+- **Extensions to new task domains** in chemistry.
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+If you have suggestions for improvement, feel free to fork the repository and submit a pull request. 
+You can also open an issue with the "[enhancement](https://github.com/TheLuoFengLab/ChemFM/issues/new?labels=enhancement&template=feature-request---.md)" tag. 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -174,14 +183,15 @@ Don't forget to give the project a star! Thanks again!
 <!-- CONTACT -->
 ## Contact
 
-Main developer: Feiyang Cai - feiyang@clemson.edu
+Main Developer: [Feiyang Cai](mailto:feiyang@clemson.edu) - feiyang@clemson.edu  
+Project Supervisor: [Feng Luo](mailto:luofeng@clemson.edu) - luofeng@clemson.edu  
 
-Project superviser: Feng Luo - luofeng@clemson.edu
+Join our community on [Discord](https://discord.gg/xjyVaZ9V) to stay updated or ask questions.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Citation
-If you find our work valuable, please cite:
+If you find our work valuable, please consider giving the project a star and citing it in your research:
 ```
 @article{ChemFM,
        author = {Cai, Feiyang and Luo, Feng},
@@ -190,6 +200,7 @@ If you find our work valuable, please cite:
          year = 2024,
 }
 ```
+Thank you for your support!
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
@@ -197,16 +208,14 @@ If you find our work valuable, please cite:
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
+The pre-training of ChemFM is based on [TinyLlama](https://github.com/jzhang38/TinyLlama), and the fine-tuning process is supported by [Hugging Face](https://huggingface.co/).
 
-* [TinyLLama](https://github.com/jzhang38/TinyLlama)
-* [Hugging Face](https://huggingface.co/)
+We would also like to thank Clemson University's [Palmetto Cluster team](https://www.palmetto.clemson.edu/palmetto/) for their invaluable support with cloud computing resources and maintenance.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->
 ## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+This project is licensed under a [**Creative Commons Attribution-NonCommercial 4.0 International License**](https://creativecommons.org/licenses/by-nc/4.0/). For more details, please see the [LICENSE](./LICENSE.txt) file.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
