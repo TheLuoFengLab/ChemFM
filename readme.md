@@ -166,7 +166,7 @@ This GitHub project is still under active development. Below is the current road
 - [ ] [Conditional Molecular Generation](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/conditional_generation)
 - [ ] [Reaction Prediction](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/reaction_prediction)
 
-If you'd like to request additional features, please [submit a feature request](https://github.com/TheLuoFengLab/ChemFM/issues/new?labels=enhancement&template=feature-request---.md) in the GitHub Issues section, or feel free to [contact us](#contact-us).
+If you'd like to request additional features, please [submit a feature request](https://github.com/TheLuoFengLab/ChemFM/issues/new?labels=enhancement&template=feature-request---.md) in the GitHub Issues section, or feel free to [contact us](#contact).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
