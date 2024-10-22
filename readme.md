@@ -97,9 +97,9 @@ The model comes in two variations with approximately 1 billion and 3 billion tra
 </p>
 
 The model can be fine-tuned for a wide range of downstream chemical tasks, such as:
-* [Molecular property prediction](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/property_prediction) &nbsp; [<a href="https://huggingface.co/spaces/ChemFM/molecular_property_prediction"><img src="https://huggingface.co/front/assets/huggingface_logo.svg" alt="Hugging Face" width="20" height="20" style="vertical-align: middle; margin-right: 0px;"> Demo</a>]
-* [Conditional molecular generation](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/conditional_generation) &nbsp; [<a href="https://huggingface.co/ChemFM/ChemFM-1B"><img src="https://huggingface.co/front/assets/huggingface_logo.svg" alt="Hugging Face" width="20" height="20" style="vertical-align: middle; margin-right: 0px;"> Demo</a>]
-* [Reaction synthesis and retro-synthesis predictions](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/reaction_prediction) &nbsp; [<a href="https://huggingface.co/ChemFM/ChemFM-1B"><img src="https://huggingface.co/front/assets/huggingface_logo.svg" alt="Hugging Face" width="20" height="20" style="vertical-align: middle; margin-right: 0px;"> Demo</a>]
+* [Molecular property prediction](./finetuning/property_prediction) &nbsp; [<a href="https://huggingface.co/spaces/ChemFM/molecular_property_prediction"><img src="https://huggingface.co/front/assets/huggingface_logo.svg" alt="Hugging Face" width="20" height="20" style="vertical-align: middle; margin-right: 0px;"> Demo</a>]
+* [Conditional molecular generation](./finetuning/conditional_generation) &nbsp; [<a href="https://huggingface.co/spaces/ChemFM/molecular_conditional_generation"><img src="https://huggingface.co/front/assets/huggingface_logo.svg" alt="Hugging Face" width="20" height="20" style="vertical-align: middle; margin-right: 0px;"> Demo</a>] (under construction)
+* [Reaction synthesis and retro-synthesis predictions](./finetuning/reaction_prediction) &nbsp; [<a href="https://huggingface.co/spaces/ChemFM/reaction_prediction"><img src="https://huggingface.co/front/assets/huggingface_logo.svg" alt="Hugging Face" width="20" height="20" style="vertical-align: middle; margin-right: 0px;"> Demo</a>] (under construction)
 * And more ...
 
 <p align="center">
@@ -144,9 +144,11 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 ```
 
 ### Pre-training the Model
+Pre-training requires significant time and high-performance GPUs due to the scale of both the model and the dataset. For instance, ChemFM-3B took over 20 days on 16 H100 GPUs.
 For detailed instructions on how to pre-train ChemFM, please refer to the [pretraining](https://github.com/TheLuoFengLab/ChemFM/tree/master/pretraining) subfolder.
 
 ### Fine-tuning the Model
+Fine-tuning can typically be performed on a single moderate GPU machine.
 For detailed instructions on how to fine-tune ChemFM for specific tasks, please refer to the relevant subfolders:
 * Molecular property prediction: [finetuning/property_prediction](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/property_prediction)
 * Conditional molecular generation: [finetuning/conditional_generation](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/conditional_generation)

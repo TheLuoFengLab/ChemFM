@@ -71,10 +71,9 @@ For the MoleculeNet and ADMET benchmark datasets, you can directly use the confi
 To fine-tune ChemFM, you can use the following command:
 
 ```bash
-python -m accelerate.commands.launch --config_file accelerate_config.yaml main.py \
-                                     --training_args_file <config_yml_file>
+python -m accelerate.commands.launch --config_file accelerate_config.yaml main.py --training_args_file <config_yml_file>
 ```
-Our code is based on the [accelerate](https://huggingface.co/docs/accelerate/main/en/index) package, and the accelerate_config.yaml file is used to configure the distribution settings for training across multiple devices.
+Our code is based on the [accelerate](https://huggingface.co/docs/accelerate/main/en/index) package, and the [accelerate_config.yaml](./accelerate_config.yaml) file is used to configure the distribution settings for training across multiple devices.
 
 </details>
 

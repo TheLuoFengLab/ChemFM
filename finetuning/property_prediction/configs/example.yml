@@ -1,0 +1,56 @@
+{
+  # General dataset information
+  dataset_group: "ADMET",          # The dataset group, options are 'ADMET', 'MoleculeNet', or 'CustomDataset'
+  dataset: "herg",                 # Specific dataset to use (hERG in ADMET benchmark)
+  
+  # Task configuration
+  task_type: "classification",     # Type of task: 'classification' or 'regression'
+  num_tasks: 1,                    # Number of tasks for multi-task learning (set to 1 for single-task);
+                                   # Corresponding to the number of heads of the MLP layer
+
+  # Data preprocessing
+  scaler: False,                   # Whether to apply a standard scaler to the data (only for regression tasks)
+  log_scaler: False,               # Whether to apply log-scaling (useful for some regression tasks; if it is set the scaler flag should be also set)
+  weight_loss: True,               # Whether to apply weighted loss based on class imbalance (relevant for classification)
+
+  # Evaluation metric
+  metric: "auroc",                 # Metric used to evaluate the model, e.g., 'auroc', 'auprc' for classification, 'mae', 'rmse', or 'spearman' for regression
+
+  # Model and tokenizer paths
+  pretrain_model: "ChemFM/ChemFM-3B",  # Pre-trained model to fine-tune (ChemFM-3B or ChemFM-1B)
+  tokenizer_path: "tokenizer",         # Path to the tokenizer to process the input molecules (this tokenizer is not as same as the one used for pre-training)
+
+  # Optimizer and learning rate settings
+  optim: "adamw_torch",            # Optimizer to use
+  weight_decay: 0.1,               # Weight decay for regularization
+  lr_scheduler_type: "cosine_with_min_lr",  # Learning rate scheduler ('cosine_with_min_lr' reduces learning rate smoothly)
+  learning_rate: 1.0e-4,           # Initial learning rate
+  min_learning_rate: 1.0e-5,       # Minimum learning rate after decay
+
+  # Training settings
+  num_train_epochs: 20,            # Maximum number of training epochs
+  warmup_ratio: 0.05,              # Warmup ratio to gradually increase learning rate at the beginning of training
+
+  # Dropout and regularization
+  attention_dropout: 0.2,          # Dropout applied to the attention layers to prevent overfitting
+
+  # LoRA configuration (Low-Rank Adaptation for fine-tuning)
+  lora: True,                      # Whether to apply LoRA for efficient fine-tuning
+  lora_rank: 8,                    # Rank for LoRA (controls the size of the low-rank adaptation matrix)
+  lora_alpha_ratio: 1.0,           # Scaling factor for the LoRA layers
+  lora_dropout: 0.5,               # Dropout rate for the LoRA layers
+  dapter_name: "admet_herg",     # if not set, it is "default"
+
+  # Batch size and gradient accumulation
+  per_device_train_batch_size: 8,  # Batch size per device during training
+  gradient_accumulation_steps: 2,  # Number of steps to accumulate gradients before updating model weights
+
+  # Data augmentation
+  molecule_source_aug_prob: 1.0,   # Probability of applying SMILES enumeration augmentation (useful for improving model robustness)
+
+  # Seed and output settings
+  num_data_seeds: 5,               # Number of data seeds to evaluate multiple splits of the dataset, the data seed would be loop through 0 to num_data_seeds-1
+  seed: 533,                       # Random seed
+  combine_train_val_test: False,    # # Whether to combine the training, validation, and test sets
+  output_dir: "./outputs/admet/herg"  # Directory to store model outputs
+}
