@@ -4,12 +4,16 @@
 
 This section of the repository contains all necessary scripts and details for fine-tuning ChemFM for **Molecular Property Prediction** tasks.
 
+We provide <a href="https://huggingface.co/spaces/ChemFM/molecular_property_prediction"><img src="https://huggingface.co/front/assets/huggingface_logo.svg" alt="Hugging Face" width="20" height="20" style="vertical-align: middle; margin-right: 0px;"> Hugging Face demos</a> 
+where you can run property prediction on the benchmark datasets.
+
 ## Overview
 
 Molecular property prediction is one of the key tasks in computational chemistry, where the goal is to predict various properties (e.g., solubility, bioactivity, toxicity) of a molecule based on its SMILES representation.
 
 - We include **comparisons for the benchmark datasets** (MoleculeNet and ADMET), along with details to replicate the results reported in the paper. 
- Model checkpoints and configurations are also provided for each dataset.
+Model checkpoints and configurations are also provided for each dataset.
+
 - We also provide **code for fine-tuning on custom datasets**, allowing flexibility for various tasks.
 
 ## Steps to Fine-tune ChemFM
@@ -132,6 +136,9 @@ If you want to evaluate or submit the results, you can download the trained [mod
 python ./submit_admet.py --model_path <path to the checkpoints> --dataset <dataset_name> --task_type <regression or classification>
 ```
 
+We carefully reviewed the published code and excluded certain methods from comparison in the ADMET benchmark because they did not follow the evaluation rules outlined above. 
+The reasons for excluding these methods are detailed in Table S2.5 of the paper.
+
 <details>
   <summary>Click to expand the ADMET results</summary>
 
@@ -141,7 +148,7 @@ python ./submit_admet.py --model_path <path to the checkpoints> --dataset <datas
 |                  | Bioavailability_Ma      | ROC-AUC ↑        | 0.672 ± 0.021 @DeepPurpose              | **0.715** ± 0.011           |
 |                  | Lipophilicity_AstraZeneca| MAE ↓            | 0.467 ± 0.006 @Chemprop-RDKit           | **0.460** ± 0.006           |
 |                  | Solubility_AqSolDB      | MAE ↓            | 0.761 ± 0.025 @Chemprop-RDKit           | **0.725** ± 0.011           |
-|                  | HIA_Hou                 | ROC-AUC ↑        | 0.981 ± 0.002 @Chemprop-RDKit           | **0.985** ± 0.006           |
+|                  | HIA_Hou                 | ROC-AUC ↑        | 0.981 ± 0.002 @Chemprop-RDKit           | **0.984** ± 0.004           |
 |                  | Pgp_Broccatelli         | ROC-AUC ↑        | 0.929 ± 0.006 @AttrMasking              | **0.931** ± 0.003           |
 | **Distribution**  | BBB_Martins             | ROC-AUC ↑        | 0.897 ± 0.004 @ContextPred              | **0.908** ± 0.010           |
 |                  | PPBR_AZ                 | MAE ↓            | 7.788 ± 0.210 @Chemprop                 | **7.505** ± 0.073           |
@@ -151,7 +158,7 @@ python ./submit_admet.py --model_path <path to the checkpoints> --dataset <datas
 |                  | CYP3A4_Veith            | PRC-AUC ↑        | 0.876 ± 0.003 @Chemprop-RDKit           | **0.878** ± 0.003           |
 |                  | CYP2C9_Substrate_CarbonMangels| PRC-AUC ↑  | 0.400 ± 0.008 @Chemprop-RDKit           | **0.414** ± 0.027           |
 |                  | CYP2D6_Substrate_CarbonMangels| PRC-AUC ↑  | 0.686 ± 0.031 @Chemprop-RDKit           | **0.739** ± 0.024           |
-|                  | CYP3A4_Substrate_CarbonMangels| ROC-AUC ↑  | 0.619 ± 0.030 @Chemprop-RDKit           | **0.685** ± 0.011           |
+|                  | CYP3A4_Substrate_CarbonMangels| ROC-AUC ↑  | 0.619 ± 0.030 @Chemprop-RDKit           | **0.654** ± 0.022           |
 | **Excretion**     | Half_Life_Obach         | Spearman ↑       | 0.329 ± 0.083 @DeepPurpose              | **0.551** ± 0.020           |
 |                  | Clearance_Hepatocyte_AZ  | Spearman ↑       | 0.439 ± 0.026 @ContextPred              | **0.495** ± 0.030           |
 |                  | Clearance_Microsome_AZ   | Spearman ↑       | 0.599 ± 0.025 @Chemprop-RDKit           | **0.611** ± 0.016           |

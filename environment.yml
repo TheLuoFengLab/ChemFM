@@ -1,6 +1,8 @@
 name: ChemFM
 channels:
+  - pytorch
   - huggingface
+  - nvidia
   - conda-forge
   - defaults
 dependencies:
@@ -9,6 +11,7 @@ dependencies:
   - aiohappyeyeballs=2.4.3=pyhd8ed1ab_0
   - aiohttp=3.10.10=py310h89163eb_0
   - aiosignal=1.3.1=pyhd8ed1ab_0
+  - aom=3.6.1=h59595ed_0
   - async-timeout=4.0.3=pyhd8ed1ab_0
   - attrs=24.2.0=pyh71513ae_0
   - aws-c-auth=0.7.31=h57bd9a3_0
@@ -29,24 +32,34 @@ dependencies:
   - azure-storage-blobs-cpp=12.13.0=h3cf044e_1
   - azure-storage-common-cpp=12.8.0=h736e048_1
   - azure-storage-files-datalake-cpp=12.12.0=ha633028_1
+  - blas=1.0=mkl
   - brotli=1.1.0=hb9d3cd8_2
   - brotli-bin=1.1.0=hb9d3cd8_2
   - brotli-python=1.1.0=py310hf71b8c6_2
   - bzip2=1.0.8=h4bc722e_7
   - c-ares=1.34.1=heb4867d_0
-  - ca-certificates=2024.8.30=hbcca054_0
+  - ca-certificates=2024.9.24=h06a4308_0
   - cairo=1.18.0=hebfffa5_3
-  - certifi=2024.8.30=pyhd8ed1ab_0
+  - certifi=2024.8.30=py310h06a4308_0
   - cffi=1.17.1=py310h8deb56e_0
   - chardet=5.2.0=py310hff52083_2
   - charset-normalizer=3.4.0=pyhd8ed1ab_0
   - colorama=0.4.6=pyhd8ed1ab_0
   - contourpy=1.3.0=py310h3788b33_2
+  - cuda-cudart=12.1.105=0
+  - cuda-cupti=12.1.105=0
+  - cuda-libraries=12.1.0=0
+  - cuda-nvrtc=12.1.105=0
+  - cuda-nvtx=12.1.105=0
+  - cuda-opencl=12.6.77=0
+  - cuda-runtime=12.1.0=0
+  - cuda-version=12.6=3
   - cycler=0.12.1=pyhd8ed1ab_0
   - dataclasses=0.8=pyhc8e2a94_3
   - datasets=3.0.1=py_0
   - dill=0.3.9=pyhd8ed1ab_0
   - expat=2.6.3=h5888daf_0
+  - ffmpeg=4.4.2=gpl_hdf48244_113
   - filelock=3.16.1=pyhd8ed1ab_0
   - font-ttf-dejavu-sans-mono=2.37=hab24e00_0
   - font-ttf-inconsolata=3.000=h77eed37_0
@@ -63,17 +76,23 @@ dependencies:
   - fuzzywuzzy=0.18.0=pyhd8ed1ab_0
   - gflags=2.2.2=h5888daf_1005
   - glog=0.7.1=hbabe93e_0
+  - gmp=6.2.1=h295c915_3
+  - gmpy2=2.1.2=py310heeb90bb_0
+  - gnutls=3.7.9=hb077bed_0
   - greenlet=3.1.1=py310hf71b8c6_0
   - h2=4.1.0=pyhd8ed1ab_0
   - hpack=4.0.0=pyh9f0ad1d_0
-  - huggingface_hub=0.25.2=py_0
+  - huggingface_hub=0.25.2=pyh0610db2_0
   - hyperframe=6.0.1=pyhd8ed1ab_0
   - icu=75.1=he02047a_0
   - idna=3.10=pyhd8ed1ab_0
+  - intel-openmp=2022.0.1=h06a4308_3633
+  - jinja2=3.1.4=py310h06a4308_0
   - joblib=1.4.2=pyhd8ed1ab_0
   - keyutils=1.6.1=h166bdaf_0
   - kiwisolver=1.4.7=py310h3788b33_0
   - krb5=1.21.3=h659f571_0
+  - lame=3.100=h7b6447c_0
   - lcms2=2.16=hb7c19ff_0
   - ld_impl_linux-64=2.43=h712a8e2_1
   - lerc=4.0.0=h27087fc_0
@@ -83,17 +102,25 @@ dependencies:
   - libarrow-acero=17.0.0=h5888daf_22_cpu
   - libarrow-dataset=17.0.0=h5888daf_22_cpu
   - libarrow-substrait=17.0.0=he882d9a_22_cpu
-  - libblas=3.9.0=24_linux64_openblas
+  - libblas=3.9.0=16_linux64_mkl
   - libboost=1.86.0=hb8260a3_2
   - libboost-python=1.86.0=py310ha2bacc8_2
   - libbrotlicommon=1.1.0=hb9d3cd8_2
   - libbrotlidec=1.1.0=hb9d3cd8_2
   - libbrotlienc=1.1.0=hb9d3cd8_2
-  - libcblas=3.9.0=24_linux64_openblas
+  - libcblas=3.9.0=16_linux64_mkl
   - libcrc32c=1.1.2=h9c3ff4c_0
+  - libcublas=12.1.0.26=0
+  - libcufft=11.0.2.4=0
+  - libcufile=1.11.1.6=0
+  - libcurand=10.3.7.77=0
   - libcurl=8.10.1=hbbe4b11_0
+  - libcusolver=11.4.4.55=0
+  - libcusparse=12.0.2.55=0
   - libdeflate=1.22=hb9d3cd8_0
+  - libdrm=2.4.123=hb9d3cd8_0
   - libedit=3.1.20191231=he28a2e2_2
+  - libegl=1.7.0=ha4b6fd6_1
   - libev=4.33=hd590300_2
   - libevent=2.1.12=hf998b51_1
   - libexpat=2.6.3=h5888daf_0
@@ -103,18 +130,26 @@ dependencies:
   - libgfortran=14.1.0=h69a702a_1
   - libgfortran-ng=14.1.0=h69a702a_1
   - libgfortran5=14.1.0=hc5f4f2c_1
+  - libgl=1.7.0=ha4b6fd6_1
   - libglib=2.82.1=h2ff4ddf_0
+  - libglvnd=1.7.0=ha4b6fd6_1
+  - libglx=1.7.0=ha4b6fd6_1
   - libgomp=14.1.0=h77fa898_1
   - libgoogle-cloud=2.30.0=h438788a_0
   - libgoogle-cloud-storage=2.30.0=h0121fbd_0
   - libgrpc=1.65.5=hf5c653b_0
   - libiconv=1.17=hd590300_2
+  - libidn2=2.3.4=h5eee18b_0
   - libjpeg-turbo=3.0.0=hd590300_1
-  - liblapack=3.9.0=24_linux64_openblas
+  - liblapack=3.9.0=16_linux64_mkl
   - libnghttp2=1.58.0=h47da74e_1
+  - libnpp=12.0.2.50=0
   - libnsl=2.0.1=hd590300_0
+  - libnvjitlink=12.1.105=0
+  - libnvjpeg=12.1.1.14=0
   - libopenblas=0.3.27=pthreads_hac2b453_1
   - libparquet=17.0.0=h6bd9018_22_cpu
+  - libpciaccess=0.18=hd590300_0
   - libpng=1.6.44=hadc24fc_0
   - libpq=16.4=h2d7952a_2
   - libprotobuf=5.27.5=h5b01275_2
@@ -124,26 +159,39 @@ dependencies:
   - libssh2=1.11.0=h0841786_0
   - libstdcxx=14.1.0=hc0a3c3a_1
   - libstdcxx-ng=14.1.0=h4852527_1
+  - libtasn1=4.19.0=h5eee18b_0
   - libthrift=0.21.0=h0e7cc3e_0
   - libtiff=4.7.0=he137b08_1
+  - libunistring=0.9.10=h27cfd23_0
   - libutf8proc=2.8.0=h166bdaf_0
   - libuuid=2.38.1=h0b41bf4_0
+  - libuv=1.49.1=hb9d3cd8_0
+  - libva=2.22.0=h8a09558_1
+  - libvpx=1.13.1=h6a678d5_0
   - libwebp-base=1.4.0=hd590300_0
   - libxcb=1.17.0=h8a09558_0
   - libxcrypt=4.4.36=hd590300_1
   - libxml2=2.12.7=he7c6b58_4
   - libzlib=1.3.1=hb9d3cd8_2
+  - llvm-openmp=15.0.7=h0cdce71_0
   - lz4-c=1.9.4=hcb278e6_0
   - matplotlib-base=3.9.2=py310h68603db_1
+  - mkl=2022.1.0=hc2b9512_224
+  - mpc=1.1.0=h10f8cd9_1
+  - mpfr=4.0.2=hb69a4c5_1
+  - mpmath=1.3.0=py310h06a4308_0
   - multidict=6.1.0=py310ha75aee5_0
   - multiprocess=0.70.16=py310ha75aee5_1
   - munkres=1.1.4=pyh9f0ad1d_0
   - ncurses=6.5=he02047a_1
+  - nettle=3.9.1=h7ab15ed_0
   - networkx=3.4.1=pyhd8ed1ab_0
   - numpy=2.1.2=py310hd6e36ab_0
+  - openh264=2.3.1=hcb278e6_2
   - openjpeg=2.5.2=h488ebb8_0
   - openssl=3.3.2=hb9d3cd8_0
   - orc=2.0.2=h690cf93_1
+  - p11-kit=0.24.1=hc5aa10d_0
   - packaging=24.1=pyhd8ed1ab_0
   - pandas=2.2.3=py310h5eaa309_1
   - patsy=0.5.6=pyhd8ed1ab_0
@@ -167,6 +215,9 @@ dependencies:
   - python-tzdata=2024.2=pyhd8ed1ab_0
   - python-xxhash=3.5.0=py310ha75aee5_1
   - python_abi=3.10=5_cp310
+  - pytorch=2.3.0=py3.10_cuda12.1_cudnn8.9.2_0
+  - pytorch-cuda=12.1=ha16c6d3_5
+  - pytorch-mutex=1.0=cuda
   - pytz=2024.1=pyhd8ed1ab_0
   - pyyaml=6.0.2=py310ha75aee5_1
   - qhull=2020.2=h434a139_5
@@ -184,24 +235,34 @@ dependencies:
   - seaborn-base=0.13.2=pyhd8ed1ab_2
   - setuptools=75.1.0=pyhd8ed1ab_0
   - six=1.16.0=pyh6c4a22f_0
+  - sleef=3.7=h1b44611_0
   - snappy=1.2.1=ha2e4443_0
   - sqlalchemy=2.0.35=py310ha75aee5_0
   - statsmodels=0.14.4=py310hf462985_0
+  - svt-av1=1.4.1=hcb278e6_0
   - threadpoolctl=3.5.0=pyhc1e730c_0
   - tk=8.6.13=noxft_h4845f30_101
+  - torchaudio=2.3.0=py310_cu121
+  - torchtriton=2.3.0=py310
+  - torchvision=0.18.0=py310_cu121
   - tqdm=4.66.5=pyhd8ed1ab_0
   - typing-extensions=4.12.2=hd8ed1ab_0
   - typing_extensions=4.12.2=pyha770c72_0
   - tzdata=2024b=hc8b5060_0
   - unicodedata2=15.1.0=py310h2372a71_0
   - urllib3=2.2.3=pyhd8ed1ab_0
+  - wayland=1.23.1=h3e06ad9_0
+  - wayland-protocols=1.37=hd8ed1ab_0
   - wheel=0.44.0=pyhd8ed1ab_0
+  - x264=1!164.3095=h166bdaf_2
+  - x265=3.5=h924138e_3
   - xorg-libice=1.1.1=hb9d3cd8_1
   - xorg-libsm=1.2.4=he73a12e_1
   - xorg-libx11=1.8.10=h4f16b4b_0
   - xorg-libxau=1.0.11=hb9d3cd8_1
   - xorg-libxdmcp=1.1.5=hb9d3cd8_0
   - xorg-libxext=1.3.6=hb9d3cd8_0
+  - xorg-libxfixes=6.0.1=hb9d3cd8_0
   - xorg-libxrender=0.9.11=hb9d3cd8_1
   - xorg-xorgproto=2024.1=hb9d3cd8_1
   - xxhash=0.8.2=hd590300_0
@@ -213,10 +274,18 @@ dependencies:
   - zstd=1.5.6=ha6fb4c9_0
   - pip:
       - accelerate==1.0.1
-      - huggingface-hub==0.25.2
-      - jinja2==3.1.4
+      - black==24.10.0
+      - click==8.1.7
+      - fastjsonschema==2.20.0
+      - gitdb==4.0.11
+      - gitpython==3.1.43
+      - hf-doc-builder==0.5.0
+      - jsonschema==4.23.0
+      - jsonschema-specifications==2024.10.1
+      - jupyter-core==5.7.2
       - markupsafe==3.0.1
-      - mpmath==1.3.0
+      - mypy-extensions==1.0.0
+      - nbformat==5.10.4
       - nvidia-cublas-cu12==12.1.3.1
       - nvidia-cuda-cupti-cu12==12.1.105
       - nvidia-cuda-nvrtc-cu12==12.1.105
@@ -229,14 +298,18 @@ dependencies:
       - nvidia-nccl-cu12==2.20.5
       - nvidia-nvjitlink-cu12==12.6.77
       - nvidia-nvtx-cu12==12.1.105
+      - pathspec==0.12.1
       - peft==0.13.2
+      - platformdirs==4.3.6
       - psutil==6.0.0
-      - pysmilesutils==1.1.0
+      - referencing==0.35.1
       - regex==2024.9.11
+      - rpds-py==0.20.0
       - safetensors==0.4.5
+      - smmap==5.0.1
       - sympy==1.13.3
       - tokenizers==0.20.1
-      - torch==2.4.1
+      - tomli==2.0.2
+      - traitlets==5.14.3
       - transformers==4.45.2
       - triton==3.0.0
-prefix: /home/feiyang/miniconda3/envs/ChemFM

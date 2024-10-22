@@ -113,7 +113,7 @@ The model can be fine-tuned for a wide range of downstream chemical tasks, such 
 
 <!-- GETTING STARTED -->
 ## Getting Started
-ChemFM has been tested with Python 3.10 and PyTorch 2.4.1. You can easily set up the required environment using Conda by following these steps:
+ChemFM has been tested with Python 3.10 and PyTorch 2.3.0. You can easily set up the required environment using Conda by following these steps:
 
 * Clone the repository
   ```bash
