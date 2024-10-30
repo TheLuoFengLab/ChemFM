@@ -205,6 +205,12 @@ If you find our work valuable, please consider giving the project a star and cit
       journal = {arXiv preprint arXiv:2203.08441},
          year = 2024,
 }
+@article{ChemFM,
+      title={A Foundation Model for Chemical Design and Property Prediction}, 
+      author={Feiyang Cai and Tianyu Zhu and Tzuen-Rong Tzeng and Yongping Duan and Ling Liu and Srikanth Pilla and Gang Li and Feng Luo},
+      year={2024},
+      journal = {arXiv preprint arXiv:2410.21422},
+}
 ```
 Thank you for your support!
 <p align="right">(<a href="#top">back to top</a>)</p>
