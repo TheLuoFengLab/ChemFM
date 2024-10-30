@@ -16,7 +16,7 @@
 [issues-shield]: https://img.shields.io/github/issues/TheLuoFengLab/ChemFM.svg?style=flat-square&color=edc775
 [issues-url]: https://github.com/TheLuoFengLab/ChemFM/issues
 [license-shield]: https://img.shields.io/github/license/TheLuoFengLab/ChemFM.svg?style=flat-square&color=94b594
-[license-url]: https://github.com/TheLuoFengLab/ChemFM/blob/master/LICENSE-CC-BY-NC-4.0.md
+[license-url]: https://github.com/TheLuoFengLab/ChemFM/blob/master/LICENSE.txt
 
 
 <!-- PROJECT LOGO -->
@@ -222,6 +222,6 @@ We would also like to thank Clemson University's [Palmetto Cluster team](https:/
 
 <!-- LICENSE -->
 ## License
-This project is licensed under a [**Creative Commons Attribution-NonCommercial 4.0 International License**](https://creativecommons.org/licenses/by-nc/4.0/). For more details, please see the [LICENSE](LICENSE-CC-BY-NC-4.0.md) file.
+This project is licensed under a [**Creative Commons Attribution-NonCommercial 4.0 International License**](https://creativecommons.org/licenses/by-nc/4.0/). For more details, please see the [LICENSE](LICENSE.txt) file.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
