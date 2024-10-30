@@ -22,7 +22,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <h1 align="center">ChemFM: A Foundation Model for Chemistry</h1>
+  <h1 align="center">ChemFM: A Foundation Model for Chemical Design and Property Prediction</h1>
 
   [![Stargazers][stars-shield]][stars-url]
   [![Forks][forks-shield]][forks-url]
