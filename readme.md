@@ -33,7 +33,7 @@
     <a href="https://arxiv.org/abs/2410.21422">
       <img src="https://info.arxiv.org/brand/images/brand-supergraphic.jpg" alt="arxiv" width="25" height="25" style="vertical-align: middle; margin-right: 0px;">
     </a>    
-    <a href="https://huggingface.co/ChemFM">
+    <a href="https://arxiv.org/abs/2410.21422">
       ArXiv
     </a>
     |
