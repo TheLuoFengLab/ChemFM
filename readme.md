@@ -200,12 +200,6 @@ Join our community on [Discord](https://discord.gg/xjyVaZ9V) to stay updated or 
 If you find our work valuable, please consider giving the project a star and citing it in your research:
 ```
 @article{ChemFM,
-       author = {Cai, Feiyang and Luo, Feng},
-        title = {ChemFM: A foundation model for Chemisty},
-      journal = {arXiv preprint arXiv:2203.08441},
-         year = 2024,
-}
-@article{ChemFM,
       title={A Foundation Model for Chemical Design and Property Prediction}, 
       author={Feiyang Cai and Tianyu Zhu and Tzuen-Rong Tzeng and Yongping Duan and Ling Liu and Srikanth Pilla and Gang Li and Feng Luo},
       year={2024},
