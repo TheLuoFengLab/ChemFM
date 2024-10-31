@@ -44,10 +44,10 @@
       Hugging Face
     </a>
     |
-    <a href="https://discord.gg/xjyVaZ9V">
+    <a href="https://discord.gg/4WbHDnPY">
       <img src="https://camo.githubusercontent.com/ae76bfbcd3ea4af324682842213b28d9a7ebdd8791d8531d1b7e3b8b4d2a0302/68747470733a2f2f6564656e742e6769746875622e696f2f537570657254696e7949636f6e732f696d616765732f7376672f646973636f72642e737667" alt="Discord" width="25" height="25" style="vertical-align: middle; margin-right: 0px;">
     </a>    
-    <a href="https://discord.gg/xjyVaZ9V">
+    <a href="https://discord.gg/4WbHDnPY">
       Discord
     </a>
   </p>
