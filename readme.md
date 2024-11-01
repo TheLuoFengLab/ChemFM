@@ -15,7 +15,7 @@
 [forks-url]: https://github.com/TheLuoFengLab/ChemFM/network/members
 [issues-shield]: https://img.shields.io/github/issues/TheLuoFengLab/ChemFM.svg?style=flat-square&color=edc775
 [issues-url]: https://github.com/TheLuoFengLab/ChemFM/issues
-[license-shield]: https://img.shields.io/github/license/TheLuoFengLab/ChemFM?style=flat-square&color=94b594
+[license-shield]: https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg?style=flat-square&color=94b594
 [license-url]: https://github.com/TheLuoFengLab/ChemFM/blob/master/LICENSE
 
 
@@ -27,7 +27,7 @@
   [![Stargazers][stars-shield]][stars-url]
   [![Forks][forks-shield]][forks-url]
   [![Issues][issues-shield]][issues-url]
-  [![MIT License][license-shield]][license-url]
+  [![GitHub License][license-shield]][license-url]
 
   <p align="center">
     <a href="https://arxiv.org/abs/2410.21422">

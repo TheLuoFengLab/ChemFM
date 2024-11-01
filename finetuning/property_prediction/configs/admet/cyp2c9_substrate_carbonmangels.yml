@@ -1,6 +1,6 @@
 {
   dataset_group: "ADMET",
-  dataset: "cyp2c9_substrate_carbonmangles",
+  dataset: "cyp2c9_substrate_carbonmangels",
   task_type: "classification",
   num_tasks: 1,
   scaler: False,
@@ -26,5 +26,5 @@
   molecule_source_aug_prob: 1.0,
   num_data_seeds: 5,
   seed: 533,
-  output_dir: "./outputs/admet/cyp2c9_substrate_carbonmangles"
+  output_dir: "./outputs/admet/cyp2c9_substrate_carbonmangels"
 }

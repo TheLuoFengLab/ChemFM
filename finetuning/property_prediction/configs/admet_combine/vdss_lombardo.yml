@@ -15,8 +15,6 @@
   learning_rate: 2.0e-4,
   min_learning_rate: 2.0e-5,
   num_train_epochs: 20,
-  early_stopping_patience: 10,
-  early_stopping_start_epoch: 100,
   warmup_ratio: 0.05,
   attention_dropout: 0.2,
   lora: True,

@@ -39,7 +39,7 @@
   lora_rank: 8,                    # Rank for LoRA (controls the size of the low-rank adaptation matrix)
   lora_alpha_ratio: 1.0,           # Scaling factor for the LoRA layers
   lora_dropout: 0.5,               # Dropout rate for the LoRA layers
-  dapter_name: "admet_herg",     # if not set, it is "default"
+  adapter_name: "admet_herg",     # if not set, it is "default"
 
   # Batch size and gradient accumulation
   per_device_train_batch_size: 8,  # Batch size per device during training
