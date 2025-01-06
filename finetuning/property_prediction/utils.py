@@ -62,6 +62,10 @@ class DataArguments:
         default="MoleculeNet",
         metadata={"help": "The dataset group."}
     )
+    custom_dataset_path: Optional[str] = field(
+        default=None,
+        metadata={"help": "The path to the custom dataset."}
+    )
     dataset: Optional[str] = field(
         default=None,
         metadata={"help": "The name of the supervised fine-tuning dataset to use."}
@@ -264,6 +268,13 @@ def make_data_module(tokenizer: transformers.PreTrainedTokenizer, dataset, seed,
 
     elif args.dataset_group == "MoleBert":
         data_path = os.path.join("./data_temp/molebert", dataset)
+        train_dataset = pd.read_csv(os.path.join(data_path, "train.csv"))
+        val_dataset = pd.read_csv(os.path.join(data_path, "val.csv"))
+        test_dataset = pd.read_csv(os.path.join(data_path, "test.csv"))
+
+    elif args.dataset_group == "CustomDataset":
+        assert args.custom_dataset_path is not None, "Custom dataset path is not provided."
+        data_path = os.path.join(args.custom_dataset_path, f"seed_{seed}")
         train_dataset = pd.read_csv(os.path.join(data_path, "train.csv"))
         val_dataset = pd.read_csv(os.path.join(data_path, "val.csv"))
         test_dataset = pd.read_csv(os.path.join(data_path, "test.csv"))
