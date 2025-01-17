@@ -1,0 +1,10 @@
+{
+  dataset: "USPTO-MIT-Synthesis",
+  pretrain_model: "ChemFM/ChemFM-3B",
+  task_type: "synthesis",
+  tokenizer_path: "tokenizer",
+  seed: 533,
+  lora: False,
+  model_path: "outputs/USPTO-MIT-Synthesis/checkpoint/",
+  original_data_augmentations: 5,
+}
