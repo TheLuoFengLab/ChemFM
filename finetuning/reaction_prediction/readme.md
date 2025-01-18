@@ -1,97 +1,112 @@
 <a id="readme-top"></a>
 
-Warning: still under construction, the checkpoint links are not correct!!!!
-
 # Reaction Prediction
 
 This section of the repository provides all necessary scripts and details for fine-tuning **ChemFM** on **reaction prediction** tasks.
 
 ## Overview
 
-Reaction prediction is a fundamental task in computational chemistry, aimed at predicting chemical transformations. It includes:
+Reaction prediction is a fundamental task in computational chemistry, focused on predicting chemical transformations. It includes:
 
 - **Synthesis prediction**: Predicting the reaction product given the reactants (which may include reagents).
-- **Retrosynthesis prediction**: Predicting the reactants based on a given product.
+- **Retrosynthesis prediction**: Predicting the reactants given a target product.
 
-In our paper, we fine-tune ChemFM based on the [Root-aligned SMILES](https://pubs.rsc.org/en/content/articlelanding/2022/sc/d2sc02763a) technique.
-But we should note that ChemFM can integrate seamlessly with SMILES sequence editing-based methods designed for reaction prediction by providing a better pre-trained model.
+In our paper, we fine-tune ChemFM using the [Root-aligned SMILES](https://pubs.rsc.org/en/content/articlelanding/2022/sc/d2sc02763a) technique. However, ChemFM can seamlessly integrate with SMILES sequence editing-based methods for reaction prediction by providing a superior pre-trained model.
 
-We provide **comparisons on benchmark datasets**, including the **USPTO benchmark datasets** (USPTO-Full, USPTO-MIT, and USPTO-50K). These datasets, consisting of organic chemical reactions extracted from U.S. patents and applications, are widely used to evaluate reaction prediction models.
+We provide **comparisons on benchmark datasets**, including the **USPTO benchmark datasets** (USPTO-Full, USPTO-MIT, and USPTO-50K). These datasets, derived from organic chemical reactions in U.S. patents and applications, are widely used to evaluate reaction prediction models.
 
-Additionally, we include details to **replicate the results** reported in the paper, along with **model checkpoints and configurations** for each dataset.
+Additionally, we include details to **replicate the results** reported in our paper, along with **model checkpoints and configurations** for each dataset.
 
-Our repository provides both synthesis and retrosynthesis prediction and follow the normal practice and evaluate on:
+Our repository supports both synthesis and retrosynthesis prediction and follows standard evaluation practices:
+
 - **Synthesis prediction**
--- USPTO-MIT
+  - USPTO-MIT
 - **Retrosynthesis prediction**
--- USPTO-FULL
--- USPTO-MIT
--- USPTO-50K
+  - USPTO-Full
+  - USPTO-MIT
+  - USPTO-50K
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+---
 
-## Steps to Fine-tune ChemFM
+## Fine-tuning ChemFM
 
-Fine-tuning the reaction tasks could take quite long time. 
-If you want to evaluate our model, you can download the trained [model checkpoints](https://clemson.box.com/s/9t6399l8fk4n1uvkvhubssmtldwmrzbb) for each dataset. 
+Fine-tuning reaction prediction tasks can be time-consuming.  
+If you prefer to evaluate our model directly, you can download the trained [model checkpoints](https://clemson.box.com/s/mw5rl7qsis7l87viq1nyyqz7o82lwnh2) for each dataset.
 
-<summary> <strong><font size="+1"> 1. Prepare the Dataset </font></strong> </summary>
-  
-We directly use the phrased data from official repo of [Root-aligned SMILES](https://github.com/otori-bird/retrosynthesis). The detailed pre-processing (converting to Root-aligned SMILES) can found in their official repo [Root-aligned SMILES](https://github.com/otori-bird/retrosynthesis).
-You can also download the [phrased data](https://clemson.box.com/s/9t6399l8fk4n1uvkvhubssmtldwmrzbb) for each dataset for not direct to the original repo.
+### 1. Prepare the Dataset
 
-<summary> <strong><font size="+1"> 2. Configure the Parameters for Training </font></strong></summary>
-You can configure the parameters for training in two ways:
+We use the processed data from the official [Root-aligned SMILES](https://github.com/otori-bird/retrosynthesis) repository. The detailed preprocessing steps (converting to Root-aligned SMILES) can be found in their repository.
 
-- **Feed arguments directly to the Python file**: Pass the arguments as command-line parameters when running the training script.
-- **Specify the parameters in a YAML file**: Define all configurations in a `.yml` file and pass the file path to the Python script.
+Alternatively, you can download the [processed data](https://clemson.box.com/s/kct8hy0pc0i7iyjlpmrxng8cyoj12i9v) for each dataset without accessing the original repository.
 
-For all experiments, you can directly use the configuration files stored in [`configs/`](./configs/).
+### 2. Configure Training Parameters
 
-<summary> <strong><font size="+1"> 3. Fine-tuning Script </font></strong></summary>
+You can configure the training parameters in two ways:
 
-To fine-tune ChemFM, you can use the following command:
+- **Pass arguments directly to the Python script**: Supply command-line arguments when running the training script.
+- **Use a YAML configuration file**: Define all settings in a `.yml` file and pass the file path as an argument.
+
+Predefined configuration files for all experiments are available in [`configs/`](./configs/).
+
+### 3. Fine-tuning Script
+
+To fine-tune ChemFM, run:
 
 ```bash
 python -m accelerate.commands.launch --config_file accelerate_config.yaml main.py --training_args_file <config_yml_file>
 ```
-Our code is based on the [accelerate](https://huggingface.co/docs/accelerate/main/en/index) package, and the [accelerate_config.yaml](./accelerate_config.yaml) file is used to configure the distribution settings for training across multiple devices.
-By default, we use x8 H100 GPUs in a single nodel to train our model, if you are use different configuration, make sure to configure the distribution settings.
+
+Our code is built on the [Accelerate](https://huggingface.co/docs/accelerate/main/en/index) package.  The [`accelerate_config.yaml`](./accelerate_config.yaml) file configures the distribution settings for multi-GPU training.
+
+By default, we use **8× H100 GPUs** on a single node for training. If using a different setup, ensure the distribution settings are adjusted accordingly.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Steps to Evaluate Fine-tuned ChemFM Model
+---
 
-<summary> <strong><font size="+1"> 1. Configure the Parameters for Generation </font></strong></summary>
-The generation parameters will define the model to be evluated, the data augmentation for generation (this is normally used in reaction prediction task to make better and robust results; we use the same setting as Root-aligned SMILES).
+## Evaluating Fine-tuned ChemFM Models
 
-You can configure the parameters for generating in two ways:
+### 1. Configure Generation Parameters
 
-- **Feed arguments directly to the Python file**: Pass the arguments as command-line parameters when running the evaluation script.
-- **Specify the parameters in a YAML file**: Define all configurations in a `.yml` file and pass the file path to the Python script.
+The generation parameters define:
+- The model to be evaluated.
+- Data augmentation settings (used in reaction prediction to improve robustness, following the Root-aligned SMILES setup).
 
-You can directly use the generation configuration files stored in [`configs/`](./configs/).
+You can configure the generation parameters in two ways:
 
-<summary> <strong><font size="+1"> 2. Generate the Predictions </font></strong> </summary>
-You should generate the predictions for each sample by using:
+- **Pass arguments directly to the Python script**.
+- **Use a YAML configuration file** (recommended, available in [`configs/`](./configs/)).
+
+### 2. Generate Predictions
+
+Run the following command to generate predictions:
 
 ```bash
 python -m accelerate.commands.launch --config_file accelerate_config.yaml evaluate.py --training_args_file <config_yml_file>
 ```
-The predictions will be stored in the model path defined in the configuration.
 
-By default, we use x8 H100 GPUs in a single nodel to generate the predictions, if you are use different configuration, make sure to configure the distribution settings.
+Predictions will be stored in the model directory specified in the configuration. 
 
+By default, we use **8× H100 GPUs** on a single node for inference. Adjust distribution settings if using a different setup.
 
-<summary> <strong><font size="+1"> 3. Score the Predictions </font></strong> </summary>
-You can get the accuracy of the model by simply running:
+### 3. Score the Predictions
+
+To evaluate model accuracy, run:
 
 ```bash
 python ./score.py -data_path <prediction_file> -augmentation <num_augmentation>
 ```
+**We also provide the predictions for each model in the checkpoint folder,** and you can directly use it the check the results.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+---
+
+
+
 
 ## Benchmark Results
 
