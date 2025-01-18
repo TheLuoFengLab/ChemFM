@@ -4,6 +4,6 @@
   tokenizer_path: "tokenizer",
   seed: 533,
   lora: True,
-  lora_model_path: "outputs/USPTO-FULL-Retro/checkpoint/USPTO-FULL-Retro",
+  model_path: "outputs/USPTO-FULL-Retro/checkpoint/USPTO-FULL-Retro",
   original_data_augmentations: 5
 }
