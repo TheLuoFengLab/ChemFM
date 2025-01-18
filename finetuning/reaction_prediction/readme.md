@@ -99,7 +99,7 @@ To evaluate model accuracy, run:
 ```bash
 python ./score.py -data_path <prediction_file> -augmentation <num_augmentation>
 ```
-**We also provide the predictions for each model in the checkpoint folder,** and you can directly use it the check the results.
+**We also provide the predictions for each model in the [checkpoint folder](https://clemson.box.com/s/mw5rl7qsis7l87viq1nyyqz7o82lwnh2),** and you can directly use it the check the results.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -118,14 +118,16 @@ python ./score.py -data_path <prediction_file> -augmentation <num_augmentation>
 | **Retro-synthesis** | USPTO-50K | Prev. best: R-SMILES            | 56.0   | 79.0   | 86.1   |
 |                  |            | Prev. second-best: Graph2Edits   | 55.1   | 77.3   | 83.4   |
 |                  |            | ChemFM                               | 58.0   | **80.0** | **86.3** |
-|                  |            | ChemFM★                              | **59.7** | 79.2   | 84.2   |
+|                  |            | ChemFM<sup>*</sup>                             | **59.7** | 79.2   | 84.2   |
 |                  | USPTO-MIT   | Prev. best: R-SMILES            | 60.3   | 77.9   | 82.8   |
 |                  |            | Prev. second-best: RetroTRAE     | 60.3   | 77.9   | 82.8   |
 |                  |            | ChemFM                               | 61.6   | **78.7** | **83.0** |
-|                  |            | ChemFM★                              | **62.4** | 78.5   | 82.5   |
+|                  |            | ChemFM<sup>*</sup>                            | **62.4** | 78.5   | 82.5   |
 |                  | USPTO-Full  | Prev. best: RetroXpert          | 49.4   | 63.6   | 67.6   |
 |                  |            | Prev. second-best: R-SMILES      | 48.9   | 66.6   | 72.0   |
 |                  |            | ChemFM                           | **51.7** | **68.0** | **72.5** |
+ChemFM<sup>*</sup> indicates the model that was trained with more steps, which generally results in better Top-1 accuracy, but Top-3 and Top-5 scores may decrease.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
