@@ -126,6 +126,7 @@ python ./score.py -data_path <prediction_file> -augmentation <num_augmentation>
 |                  | USPTO-Full  | Prev. best: RetroXpert          | 49.4   | 63.6   | 67.6   |
 |                  |            | Prev. second-best: R-SMILES      | 48.9   | 66.6   | 72.0   |
 |                  |            | ChemFM                           | **51.7** | **68.0** | **72.5** |
+
 ChemFM<sup>*</sup> indicates the model that was trained with more steps, which generally results in better Top-1 accuracy, but Top-3 and Top-5 scores may decrease.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
