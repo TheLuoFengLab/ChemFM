@@ -1,0 +1,11 @@
+{   
+    "properties":{
+        "TPSA": {
+            "sample_points": [40.0, 80.0, 120.0],
+            "num_samples": 10000,
+            "temperature": 1.0,
+            "means": [80.19717097706841],
+            "stds": [38.212259443049554]
+        }
+    }
+}

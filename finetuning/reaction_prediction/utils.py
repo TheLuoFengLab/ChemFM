@@ -57,7 +57,7 @@ class ModelArguments:
 class DataArguments:
     dataset: Optional[str] = field(
         default="USPTO-MIT",
-        metadata={"help": "The dataset group."}
+        metadata={"help": "The dataset name."}
     )
     string_template_path: Optional[str] = field(
         default="./string_template.json",
@@ -106,14 +106,12 @@ class TrainingArguments(transformers.Seq2SeqTrainingArguments):
     per_device_train_batch_size: int = field(default=16, metadata={"help": 'The training batch size per GPU. Increase for better speed.'})
     per_device_eval_batch_size: int = field(default=32, metadata={"help": 'The evaluation batch size per GPU. Increase for better speed.'})
     gradient_accumulation_steps: int = field(default=1, metadata={"help": 'How many gradients to accumulate before to perform an optimizer step'})
-    max_steps: int = field(default=0, metadata={"help": 'How many optimizer update steps to take'})
     weight_decay: float = field(default=0.0, metadata={"help": 'The L2 weight decay rate of AdamW'})
     learning_rate: float = field(default=0.0002, metadata={"help": 'The learnign rate'})
     min_learning_rate: float = field(default=2e-5, metadata={"help": 'The minimum learning rate'})
     remove_unused_columns: bool = field(default=False, metadata={"help": 'Removed unused columns. Needed to make this codebase work.'})
     max_grad_norm: float = field(default=1.0, metadata={"help": 'Gradient clipping max norm. This is tuned and works well for all models tested.'})
     gradient_checkpointing: bool = field(default=False, metadata={"help": 'Use gradient checkpointing. You want to use this.'})
-    do_train: bool = field(default=True, metadata={"help": 'To train or not to train, that is the question?'})
     lr_scheduler_type: str = field(default='constant', metadata={"help": 'Learning rate schedule. Constant a bit better than cosine, and has advantage for analysis'})
     warmup_ratio: float = field(default=0.03, metadata={"help": 'Fraction of steps to do a warmup for'})
     early_stopping_patience: int = field(default=10, metadata={"help": 'The number of epochs to wait for improvement before stopping training'})

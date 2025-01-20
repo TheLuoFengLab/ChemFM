@@ -1,0 +1,17 @@
+{
+    "END_STRING": "<eos>",
+    "PROPERTY_START_STRING": "<pstart>",
+    "MOLECULE_START_STRING": "<molstart>",
+    "MASKED_MOLECULE_START_STRING": "<mmolstart>",
+    "SCAFFOLD_MOLECULE_START_STRING": "<smolstart>",
+    "REACTANTS_START_STRING": "<rstart>",
+    "PRODUCTS_START_STRING": "<prostart>",
+    "MASKED_REACTANTS_START_STRING": "<mrstart>",
+    "SINGLE_REACTANT_START_STRING": "<srstart>",
+    "ELEMENT_MASK": "<emask>",
+    "REACTANT_MASK": "<rmask>",
+    "RESULTING_STRING": "<->>",
+    "PROPERTY_INNER_SEP": ":",
+    "PROPERTY_INTER_SEP": ";",
+    "VALUE_FLOAT_PRECISION": 3
+}

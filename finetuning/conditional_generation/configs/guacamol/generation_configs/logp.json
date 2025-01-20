@@ -1,0 +1,11 @@
+{
+    "properties":{
+        "logp": {
+            "sample_points": [2.0, 4.0, 6.0],
+            "num_samples": 10000,
+            "temperature": 1.0,
+            "means": [3.497542110420217],
+            "stds": [1.7923582437824368]
+        }
+    }
+}        

@@ -1,0 +1,14 @@
+{   
+    "scaffold_list": ["O=C(Cc1ccccc1)NCc1ccccc1", "c1cnc2[nH]ccc2c1", "c1ccc(-c2ccnnc2)cc1", 
+                       "c1ccc(-n2cnc3ccccc32)cc1", "O=C(c1cc[nH]c1)N1CCN(c2ccccc2)CC1"],
+    "properties": {
+        "TPSA+SAS": {
+            "sample_points": [[40.0, 2.0], [80.0, 2.0],
+                              [40.0, 3.5], [80.0, 3.5]],
+            "num_samples": 10000,
+            "temperature": 1.0,
+            "means": [65.81412109497064, 2.448411317890052],
+            "stds": [18.099281727806012, 0.4602113679393573]
+        }
+    }
+}

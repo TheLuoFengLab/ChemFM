@@ -98,7 +98,7 @@ The model comes in two variations with approximately 1 billion and 3 billion tra
 
 The model can be fine-tuned for a wide range of downstream chemical tasks, such as:
 * [Molecular property prediction](./finetuning/property_prediction) &nbsp; [<a href="https://huggingface.co/spaces/ChemFM/molecular_property_prediction"><img src="https://huggingface.co/front/assets/huggingface_logo.svg" alt="Hugging Face" width="20" height="20" style="vertical-align: middle; margin-right: 0px;"> Demo</a>]
-* [Conditional molecular generation](./finetuning/conditional_generation) &nbsp; [<a href="https://huggingface.co/spaces/ChemFM/molecular_conditional_generation"><img src="https://huggingface.co/front/assets/huggingface_logo.svg" alt="Hugging Face" width="20" height="20" style="vertical-align: middle; margin-right: 0px;"> Demo</a>] (under construction)
+* [Conditional molecular generation](./finetuning/conditional_generation) &nbsp; [<a href="https://huggingface.co/spaces/ChemFM/molecular_conditional_generation"><img src="https://huggingface.co/front/assets/huggingface_logo.svg" alt="Hugging Face" width="20" height="20" style="vertical-align: middle; margin-right: 0px;"> Demo</a>] (Demo is under construction)
 * [Reaction synthesis and retro-synthesis predictions](./finetuning/reaction_prediction) &nbsp; [<a href="https://huggingface.co/spaces/ChemFM/reaction_prediction"><img src="https://huggingface.co/front/assets/huggingface_logo.svg" alt="Hugging Face" width="20" height="20" style="vertical-align: middle; margin-right: 0px;"> Demo</a>] (Demo is under construction)
 * And more ...
 
@@ -165,7 +165,7 @@ This GitHub project is still under active development. Below is the current road
 
 - [ ] [Pre-training](https://github.com/TheLuoFengLab/ChemFM/tree/master/pretraining)
 - [x] [Molecular Property Prediction](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/property_prediction)
-- [ ] [Conditional Molecular Generation](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/conditional_generation)
+- [x] [Conditional Molecular Generation](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/conditional_generation)
 - [x] [Reaction Prediction](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/reaction_prediction)
 
 If you'd like to request additional features, please [submit a feature request](https://github.com/TheLuoFengLab/ChemFM/issues/new?labels=enhancement&template=feature-request---.md) in the GitHub Issues section, or feel free to [contact us](#contact).

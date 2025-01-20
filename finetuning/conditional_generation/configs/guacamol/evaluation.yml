@@ -1,0 +1,9 @@
+{
+  dataset: "guacamol",
+  has_scaffold: False,
+  scaffold_aug_prob: 0.0,
+  tokenizer_path: "tokenizer",
+  model_path: "./outputs/guacamol/checkpoint",
+  generation_config_path: "./configs/guacamol/generation_configs/TPSA_logp_SAS.json",
+  generation_output_path: "./outputs/guacamol/checkpoint/generations/TPSA_logp_SAS.csv"
+}

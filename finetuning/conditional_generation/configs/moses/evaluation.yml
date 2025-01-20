@@ -1,0 +1,9 @@
+{
+  dataset: "moses",
+  has_scaffold: True,
+  scaffold_aug_prob: 0.0,
+  tokenizer_path: "tokenizer",
+  model_path: "./outputs/moses/checkpoint",
+  generation_config_path: "./configs/moses/generation_configs/TPSA_logp_SAS.json",
+  generation_output_path: "./outputs/moses/checkpoint/generations/TPSA_logp_SAS.csv"
+}

@@ -1,0 +1,11 @@
+{   
+    "properties":{
+        "SAS": {
+            "sample_points": [2.0, 3.0, 4.0],
+            "num_samples": 10000,
+            "temperature": 1.0,
+            "means": [2.889429694406497],
+            "stds": [0.8081188219568571]
+        }
+    }        
+}
