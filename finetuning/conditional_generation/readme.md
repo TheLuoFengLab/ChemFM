@@ -22,7 +22,7 @@ We include details to **replicate the results** reported in our paper, along wit
 ## Fine-tuning ChemFM
 
 Fine-tuning conditional molecular generation tasks can be computationally intensive.  
-If you prefer to evaluate our model directly, you can download the trained [model checkpoints](https://clemson.box.com/s/pnzawue6f15zxloub04jd0fdp3pnqvht) for each dataset.
+If you prefer to evaluate our model directly, you can download the trained [model checkpoints](https://clemson.box.com/s/ajrx5x37lyl0sm7reqiztmhi39hm07m7) for each dataset.
 
 ### 1. Prepare the Dataset
 
@@ -96,7 +96,7 @@ An example script for evaluating scaffold and property-conditioned (scaffold + T
 python ./score.py -train_data_path ./data_temp/moses/train_data.csv -data_path ./outputs/moses/checkpoint/generations/TPSA_logp_SAS.csv
 ```
 
-**We also provide the generated molecules for each model in the [checkpoint folder](https://clemson.box.com/s/pnzawue6f15zxloub04jd0fdp3pnqvht),** and you can directly use it to check the results.
+**We also provide the generated molecules for each model in the [checkpoint folder](https://clemson.box.com/s/ajrx5x37lyl0sm7reqiztmhi39hm07m7),** and you can directly use it to check the results.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
