@@ -150,7 +150,7 @@ For detailed instructions on how to pre-train ChemFM, please refer to the [pretr
 ### Fine-tuning the Model
 Fine-tuning can typically be performed on a single moderate GPU machine.
 For detailed instructions on how to fine-tune ChemFM for specific tasks, please refer to the relevant subfolders:
-* Molecular property prediction: [finetuning/property_prediction](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/property_prediction)
+* Molecular property prediction: [finetuning/property_prediction](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/property_prediction_zero_gpu)
 * Conditional molecular generation: [finetuning/conditional_generation](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/conditional_generation)
 * Reaction synthesis and retro-synthesis predictions: [finetuning/reaction_prediction](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/reaction_prediction)
 
@@ -163,7 +163,7 @@ For detailed instructions on how to fine-tune ChemFM for specific tasks, please 
 
 This GitHub project is still under active development. Below is the current roadmap:
 
-- [ ] [Pre-training](https://github.com/TheLuoFengLab/ChemFM/tree/master/pretraining)
+- [x] [Pre-training](https://github.com/TheLuoFengLab/ChemFM/tree/master/pretraining)
 - [x] [Molecular Property Prediction](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/property_prediction)
 - [x] [Conditional Molecular Generation](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/conditional_generation)
 - [x] [Reaction Prediction](https://github.com/TheLuoFengLab/ChemFM/tree/master/finetuning/reaction_prediction)
