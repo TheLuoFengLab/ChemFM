@@ -4,7 +4,7 @@
 
 This section of the repository contains all necessary scripts and details for fine-tuning ChemFM for **Molecular Property Prediction** tasks.
 
-We provide <a href="https://huggingface.co/spaces/ChemFM/molecular_property_prediction"><img src="https://huggingface.co/front/assets/huggingface_logo.svg" alt="Hugging Face" width="20" height="20" style="vertical-align: middle; margin-right: 0px;"> Hugging Face demos</a> 
+We provide <a href="https://huggingface.co/spaces/ChemFM/molecular_property_prediction_zero_gpu"><img src="https://huggingface.co/front/assets/huggingface_logo.svg" alt="Hugging Face" width="20" height="20" style="vertical-align: middle; margin-right: 0px;"> Hugging Face demos</a> 
 where you can run property prediction on the benchmark datasets.
 
 ## Overview
