@@ -15,6 +15,8 @@ In our paper, we fine-tune ChemFM using the [Root-aligned SMILES](https://pubs.r
 
 We provide **comparisons on benchmark datasets**, including the **USPTO benchmark datasets** (USPTO-Full, USPTO-MIT, and USPTO-50K). These datasets, derived from organic chemical reactions in U.S. patents and applications, are widely used to evaluate reaction prediction models.
 
+<font color="red">However, we exclude methods that are not open-sourced or cannot be replicated based on our extensive replication.</font>
+
 Additionally, we include details to **replicate the results** reported in our paper, along with **model checkpoints and configurations** for each dataset.
 
 Our repository supports both synthesis and retrosynthesis prediction and follows standard evaluation practices:

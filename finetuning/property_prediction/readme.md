@@ -107,8 +107,18 @@ Public test datasets are often leaked, and we’ve observed cases where hyperpar
 
 
 ### MoleculeNet Results
+  As previously mentioned, different data splits can lead to significant variations in evaluation results, particularly when using scaffold splitting.
+
+  This comparison is based on the exact same data splits from the original MoleculeNet benchmark, as extracted by [ChemBench](https://github.com/shenwanxiang/ChemBench).
+
+  We also compared our results with other methods using different data splits on the MoleculeNet benchmark in our [paper](https://arxiv.org/pdf/2410.21422). 
+
+  <font color="red">However, we exclude methods that are not open-sourced, do not adhere to the standard training and evaluation rules discussed above, or cannot be replicated based on our extensive replication experiments.</font>
+
 <details>
   <summary>Click to expand the MoleculeNet results</summary>
+
+
 
 | **Category**            | **Dataset**     | **Task Metric**  | **MoleculeNet (Model)** | **Chemprop** | **MMNB** | **ChemFM-3B**             |
 |-------------------------|-----------------|------------------|---------------------------|----------------|----------------|-----------------------------|
@@ -136,8 +146,8 @@ If you want to evaluate or submit the results, you can download the trained [mod
 python ./submit_admet.py --model_path <path to the checkpoints> --dataset <dataset_name> --task_type <regression or classification>
 ```
 
-We carefully reviewed the published code and excluded certain methods from comparison in the ADMET benchmark because they did not follow the evaluation rules outlined above. 
-The reasons for excluding these methods are detailed in Table S2.5 of the paper.
+<font color='red'>We carefully reviewed the published code and excluded certain methods from comparison in the ADMET benchmark because they did not follow the evaluation rules outlined above. 
+The reasons for excluding these methods are detailed in Table S2.5 of the paper.  </font>
 
 <details>
   <summary>Click to expand the ADMET results</summary>
