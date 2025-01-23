@@ -113,7 +113,8 @@ Public test datasets are often leaked, and we’ve observed cases where hyperpar
 
   We also compared our results with other methods using different data splits on the MoleculeNet benchmark in our [paper](https://arxiv.org/pdf/2410.21422). 
 
-  <font color="red">However, we exclude methods that are not open-sourced, do not adhere to the standard training and evaluation rules discussed above, or cannot be replicated based on our extensive replication experiments.</font>
+  > [!IMPORTANT]
+  > We exclude methods that are not open-sourced, do not adhere to the standard training and evaluation rules discussed above, or cannot be replicated based on our extensive replication experiments.
 
 <details>
   <summary>Click to expand the MoleculeNet results</summary>
@@ -146,8 +147,9 @@ If you want to evaluate or submit the results, you can download the trained [mod
 python ./submit_admet.py --model_path <path to the checkpoints> --dataset <dataset_name> --task_type <regression or classification>
 ```
 
-<font color='red'>We carefully reviewed the published code and excluded certain methods from comparison in the ADMET benchmark because they did not follow the evaluation rules outlined above. 
-The reasons for excluding these methods are detailed in Table S2.5 of the paper.  </font>
+> [!IMPORTANT]
+> We carefully reviewed the published code and excluded certain methods from comparison in the ADMET benchmark because they did not follow the evaluation rules outlined above. 
+The reasons for excluding these methods are detailed in Table S2.5 of the paper.
 
 <details>
   <summary>Click to expand the ADMET results</summary>
