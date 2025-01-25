@@ -98,7 +98,7 @@ The model comes in two variations with approximately 1 billion and 3 billion tra
 
 The model can be fine-tuned for a wide range of downstream chemical tasks, such as:
 * [Molecular property prediction](./finetuning/property_prediction) &nbsp; [<a href="https://huggingface.co/spaces/ChemFM/molecular_property_prediction_zero_gpu"><img src="https://huggingface.co/front/assets/huggingface_logo.svg" alt="Hugging Face" width="20" height="20" style="vertical-align: middle; margin-right: 0px;"> Demo</a>]
-* [Conditional molecular generation](./finetuning/conditional_generation) &nbsp;
+* [Conditional molecular generation](./finetuning/conditional_generation) &nbsp; [<a href="https://huggingface.co/spaces/ChemFM/molecular_conditional_generation"><img src="https://huggingface.co/front/assets/huggingface_logo.svg" alt="Hugging Face" width="20" height="20" style="vertical-align: middle; margin-right: 0px;"> Demo</a>]
 * [Reaction synthesis and retro-synthesis predictions](./finetuning/reaction_prediction) &nbsp; [<a href="https://huggingface.co/spaces/ChemFM/reaction_prediction"><img src="https://huggingface.co/front/assets/huggingface_logo.svg" alt="Hugging Face" width="20" height="20" style="vertical-align: middle; margin-right: 0px;"> Demo</a>]
 * And more ...
 
