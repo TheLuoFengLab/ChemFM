@@ -222,6 +222,6 @@ We would also like to thank Clemson University's [Palmetto Cluster team](https:/
 
 <!-- LICENSE -->
 ## License
-This project is licensed under a [**Creative Commons Attribution-NonCommercial 4.0 International License**](https://creativecommons.org/licenses/by-nc/4.0/). For more details, please see the [LICENSE](LICENSE.txt) file.
+This project is licensed under a [**Creative Commons Attribution-NonCommercial 4.0 International License**](https://creativecommons.org/licenses/by-nc/4.0/). For more details, please see the [LICENSE](LICENSE) file.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
