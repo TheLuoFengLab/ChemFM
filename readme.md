@@ -201,7 +201,7 @@ If you find our work valuable, please consider giving the project a star and cit
 ```
 @article{ChemFM,
       title={A Foundation Model for Chemical Design and Property Prediction}, 
-      author={Feiyang Cai and Tianyu Zhu and Tzuen-Rong Tzeng and Yongping Duan and Ling Liu and Srikanth Pilla and Gang Li and Feng Luo},
+      author={Feiyang Cai and Katelin Hanna and Tianyu Zhu and Tzuen-Rong Tzeng and Yongping Duan and Ling Liu and Srikanth Pilla and Gang Li and Feng Luo},
       year={2024},
       journal = {arXiv preprint arXiv:2410.21422},
 }
