@@ -61,7 +61,7 @@
 
 ## 📰 News
 
-- **[Jun 2025] New Preview Model Released:**  We’ve released a lightweight **20M-parameter** version of ChemFM: 👉 [ChemFMv2-20M on Hugging Face](https://huggingface.co/ChemFM/ChemFMv2-20M)  This version has **not been fully benchmarked**, but is available for **early preview and usage**.
+- **[Jun 2025] New Preview Model Released:**  We've released a lightweight **20M-parameter** version of ChemFM: 👉 [ChemFMv2-20M on Hugging Face](https://huggingface.co/ChemFM/ChemFMv2-20M)  This version has **not been fully benchmarked**, but is available for **early preview and usage**.
 
 <!-- TABLE OF CONTENTS -->
 <details>
