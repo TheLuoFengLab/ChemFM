@@ -202,10 +202,14 @@ Join our community on [Discord](https://discord.gg/xjyVaZ9V) to stay updated or 
 If you find our work valuable, please consider giving the project a star and citing it in your research:
 ```
 @article{ChemFM,
-      title={A Foundation Model for Chemical Design and Property Prediction}, 
-      author={Feiyang Cai and Katelin Hanna and Tianyu Zhu and Tzuen-Rong Tzeng and Yongping Duan and Ling Liu and Srikanth Pilla and Gang Li and Feng Luo},
-      year={2024},
-      journal = {arXiv preprint arXiv:2410.21422},
+	title={ChemFM as a scaling law guided foundation model pre-trained on informative chemicals},
+	author={Cai, Feiyang and Zacour, Katelin and Zhu, Tianyu and Tzeng, Tzuen-Rong and Duan, Yongping and Liu, Ling and Pilla, Srikanth and Li, Gang and Luo, Feng},
+	journal={Communications Chemistry},
+	volume={9},
+	number={1},
+	pages={3},
+	year={2025},
+	publisher={Nature Publishing Group UK London}
 }
 ```
 Thank you for your support!
